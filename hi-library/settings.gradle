@@ -1,0 +1,6 @@
+include ':retrofit-converters:gson'
+include ':retrofit'
+include ':retrofit:test-helpers'
+include ':hi-library'
+include ':app'
+rootProject.name = "hi-library"

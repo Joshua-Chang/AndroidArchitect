@@ -1,0 +1,223 @@
+{
+  "modules": [
+    {
+      "name": "as",
+      "chnname": "移动架构",
+      "entities": [
+        {
+          "title": "t_user",
+          "fields": [
+            {
+              "name": "uid",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "用户ID",
+              "pk": true,
+              "notNull": true,
+              "autoIncrement": true
+            },
+            {
+              "name": "imooc_id",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "幕客ID",
+              "notNull": true
+            },
+            {
+              "name": "order_id",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "订单ID",
+              "notNull": true
+            },
+            {
+              "name": "user_name",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "用户名",
+              "notNull": true
+            },
+            {
+              "name": "pwd",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "密码",
+              "notNull": true
+            },
+            {
+              "name": "create_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "forbid",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "是否被禁用"
+            }
+          ],
+          "indexs": [
+            {
+              "name": "index_name",
+              "isUnique": true,
+              "fields": [
+                "imooc_id"
+              ]
+            }
+          ],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "用户信息表"
+        },
+        {
+          "title": "t_goods_category",
+          "fields": [
+            {
+              "name": "category_id",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "商品类别",
+              "pk": true,
+              "notNull": true,
+              "autoIncrement": true
+            },
+            {
+              "name": "category_name",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "类别名称",
+              "notNull": true
+            },
+            {
+              "name": "category_time",
+              "type": "Date",
+              "remark": "",
+              "chnname": "创建时间"
+            }
+          ],
+          "indexs": [
+            {
+              "name": "category_name_index",
+              "isUnique": true,
+              "fields": [
+                "category_name"
+              ]
+            }
+          ],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "商品类表"
+        }
+      ],
+      "graphCanvas": {
+        "nodes": [],
+        "edges": []
+      },
+      "associations": []
+    }
+  ],
+  "message": "新建category索引",
+  "version": "v1.0.5",
+  "changes": [
+    {
+      "type": "index",
+      "name": "t_goods_category.category_name_index",
+      "opt": "add"
+    },
+    {
+      "type": "index",
+      "name": "t_goods_category.index_name",
+      "opt": "delete"
+    }
+  ],
+  "date": "2021/1/10 22:2:13"
+}

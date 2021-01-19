@@ -1,0 +1,371 @@
+{
+  "code": 0,
+  "data": {
+    "bannerList": [
+      {
+        "id": "5",
+        "sticky": 1,
+        "type": "goods",
+        "title": "商品推荐",
+        "subtitle": "限时特惠2件6折",
+        "url": "https://m.banggo.com/theme/ZP-ZHUTI3103-1.shtml?avn=1&frombgapp=1&network=NET_WORK_DISABLED&width=540&height=810",
+        "cover": "https://img.banggo.com/sources/cms/banggo2017/APP/dongj_19.jpg?x-oss-process=image/resize,m_pad,w_960,h_480",
+        "createTime": "2020-03-23 11:24:57"
+      },
+      {
+        "id": "4",
+        "sticky": 1,
+        "type": "goods",
+        "title": "商品推荐",
+        "subtitle": "好货不止一折",
+        "url": "https://m.banggo.com/theme/ZP-ZHUTI3103-2.shtml?avn=1&frombgapp=1&network=NET_WORK_DISABLED&width=540&height=810",
+        "cover": "https://img.banggo.com/sources/cms/banggo2017/APP/dongj_21.jpg?x-oss-process=image/resize,m_pad,w_960,h_480",
+        "createTime": "2020-03-23 11:24:57"
+      },
+      {
+        "id": "3",
+        "sticky": 1,
+        "type": "goods",
+        "title": "商品推荐",
+        "subtitle": "颜选热销 折上两件六折",
+        "url": "https://m.banggo.com/theme/ZP-ZHUTI3103-3.shtml?avn=1&frombgapp=1&network=NET_WORK_DISABLED&width=540&height=810",
+        "cover": "https://img.banggo.com/sources/cms/banggo2017/APP/dongj_22.jpg?x-oss-process=image/resize,m_pad,w_960,h_480",
+        "createTime": "2020-03-23 11:24:57"
+      },
+      {
+        "id": "2",
+        "sticky": 1,
+        "type": "goods",
+        "title": "商品推荐",
+        "subtitle": "MooMoo&米喜迪品牌专场",
+        "url": "https://m.banggo.com/theme/zp-yjb-1.shtml?avn=1&frombgapp=1&network=NET_WORK_DISABLED&width=540&height=810",
+        "cover": "https://img.banggo.com/sources/cms/banggo2017/APP/dongj_23.jpg?x-oss-process=image/resize,m_pad,w_960,h_480",
+        "createTime": "2020-03-23 11:24:57"
+      },
+      {
+        "id": "1",
+        "sticky": 1,
+        "type": "goods",
+        "title": "商品推荐",
+        "subtitle": "潮牌集结",
+        "url": "https://m.banggo.com/theme/ZP-ZHUTI3103-20.shtml?avn=1&frombgapp=1&network=NET_WORK_DISABLED&width=540&height=810",
+        "cover": "https://img.banggo.com/sources/cms/banggo2017/APP/dongj_24.jpg?x-oss-process=image/resize,m_pad,w_960,h_480",
+        "createTime": "2020-03-23 11:24:57"
+      }
+    ],
+    "goodsList": [
+      {
+        "goodsId": "1580374361011",
+        "categoryId": "16",
+        "hot": true,
+        "sliderImages": [
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/117a40a6d63c5bac590080733512b89d.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/7d4449179b509531414365460d80a87d.jpeg",
+            "type": 1
+          }
+        ],
+        "marketPrice": "¥100",
+        "groupPrice": "14",
+        "completedNumText": "已拼1348件",
+        "goodsName": "吉祥鱼房间新年装饰客厅餐厅卧室玄背景墙亚克力3d立体自粘墙贴画",
+        "tags": "极速退款 全场包邮 7天无理由退货",
+        "joinedAvatars": null,
+        "createTime": "2020-01-30 16:52:41",
+        "sliderImage": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg"
+      },
+      {
+        "goodsId": "1580374361011",
+        "categoryId": "16",
+        "hot": true,
+        "sliderImages": [
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/117a40a6d63c5bac590080733512b89d.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/7d4449179b509531414365460d80a87d.jpeg",
+            "type": 1
+          }
+        ],
+        "marketPrice": "¥100",
+        "groupPrice": "14",
+        "completedNumText": "已拼1348件",
+        "goodsName": "吉祥鱼房间新年装饰客厅餐厅卧室玄背景墙亚克力3d立体自粘墙贴画",
+        "tags": "极速退款 全场包邮 7天无理由退货",
+        "joinedAvatars": null,
+        "createTime": "2020-01-30 16:52:41",
+        "sliderImage": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg"
+      },
+      {
+        "goodsId": "1580374361011",
+        "categoryId": "16",
+        "hot": true,
+        "sliderImages": [
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/117a40a6d63c5bac590080733512b89d.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/7d4449179b509531414365460d80a87d.jpeg",
+            "type": 1
+          }
+        ],
+        "marketPrice": "¥780",
+        "groupPrice": "149",
+        "completedNumText": "已拼38件",
+        "goodsName": "【B51801】2020新款羽绒服男士短款户外加厚工装冬季外套时尚情侣装",
+        "tags": "全场包邮",
+        "joinedAvatars": null,
+        "createTime": "2020-01-30 16:52:41",
+        "sliderImage": "http://pic.banggo.com/sources/images/goods/TP/B51801/B51801_00.jpg?x-oss-process=image/resize,m_pad,w_120,h_120"
+      },
+      {
+        "goodsId": "1580374361011",
+        "categoryId": "16",
+        "hot": true,
+        "sliderImages": [
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/117a40a6d63c5bac590080733512b89d.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/7d4449179b509531414365460d80a87d.jpeg",
+            "type": 1
+          }
+        ],
+        "marketPrice": "¥100",
+        "groupPrice": "14",
+        "completedNumText": "已拼1348件",
+        "goodsName": "吉祥鱼房间新年装饰客厅餐厅卧室玄背景墙亚克力3d立体自粘墙贴画",
+        "tags": "极速退款 全场包邮 7天无理由退货",
+        "joinedAvatars": null,
+        "createTime": "2020-01-30 16:52:41",
+        "sliderImage": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg"
+      },
+      {
+        "goodsId": "1580374361011",
+        "categoryId": "16",
+        "hot": true,
+        "sliderImages": [
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/117a40a6d63c5bac590080733512b89d.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/7d4449179b509531414365460d80a87d.jpeg",
+            "type": 1
+          }
+        ],
+        "marketPrice": "¥199",
+        "groupPrice": "140",
+        "completedNumText": "已拼1348件",
+        "goodsName": "男基本修身长裤",
+        "tags": "极速退款 全场包邮 7天无理由退货",
+        "joinedAvatars": null,
+        "createTime": "2020-01-30 16:52:41",
+        "sliderImage": "http://pic.banggo.com/sources/images/goods/MB/748102/748102_00.jpg?x-oss-process=image/resize,m_pad,w_120,h_120"
+      },
+      {
+        "goodsId": "1580374361011",
+        "categoryId": "16",
+        "hot": true,
+        "sliderImages": [
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/117a40a6d63c5bac590080733512b89d.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/7d4449179b509531414365460d80a87d.jpeg",
+            "type": 1
+          }
+        ],
+        "marketPrice": "¥1500",
+        "groupPrice": "399",
+        "completedNumText": "已拼18件",
+        "goodsName": "男舒适棉麻长袖衬衫",
+        "tags": "极速退款 全场包邮 7天无理由退货",
+        "joinedAvatars": null,
+        "createTime": "2020-01-30 16:52:41",
+        "sliderImage": "http://pic.banggo.com/sources/images/goods/MC/527033/527033_00.jpg?x-oss-process=image/resize,m_pad,w_120,h_120"
+      },
+      {
+        "goodsId": "1580374361011",
+        "categoryId": "16",
+        "hot": true,
+        "sliderImages": [
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/117a40a6d63c5bac590080733512b89d.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/7d4449179b509531414365460d80a87d.jpeg",
+            "type": 1
+          }
+        ],
+        "marketPrice": "¥100",
+        "groupPrice": "14",
+        "completedNumText": "已拼1348件",
+        "goodsName": "吉祥鱼房间新年装饰客厅餐厅卧室玄背景墙亚克力3d立体自粘墙贴画",
+        "tags": "极速退款 全场包邮 7天无理由退货",
+        "joinedAvatars": null,
+        "createTime": "2020-01-30 16:52:41",
+        "sliderImage": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg"
+      },
+      {
+        "goodsId": "1580374361011",
+        "categoryId": "16",
+        "hot": true,
+        "sliderImages": [
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/117a40a6d63c5bac590080733512b89d.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/7d4449179b509531414365460d80a87d.jpeg",
+            "type": 1
+          }
+        ],
+        "marketPrice": "¥100",
+        "groupPrice": "14",
+        "completedNumText": "已拼1348件",
+        "goodsName": "吉祥鱼房间新年装饰客厅餐厅卧室玄背景墙亚克力3d立体自粘墙贴画",
+        "tags": "极速退款 全场包邮 7天无理由退货",
+        "joinedAvatars": null,
+        "createTime": "2020-01-30 16:52:41",
+        "sliderImage": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg"
+      },
+      {
+        "goodsId": "1580374361011",
+        "categoryId": "16",
+        "hot": true,
+        "sliderImages": [
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/117a40a6d63c5bac590080733512b89d.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/7d4449179b509531414365460d80a87d.jpeg",
+            "type": 1
+          }
+        ],
+        "marketPrice": "¥100",
+        "groupPrice": "14",
+        "completedNumText": "已拼1348件",
+        "goodsName": "【赵磊同款】情侣款男装2020春季新款外套男立领连帽夹克",
+        "tags": "极速退款 全场包邮 7天无理由退货",
+        "joinedAvatars": null,
+        "createTime": "2020-01-30 16:52:41",
+        "sliderImage": "http://pic.banggo.com/sources/images/goods/MC/534092/534092_00.jpg?x-oss-process=image/resize,m_pad,w_120,h_120"
+      },
+      {
+        "goodsId": "1580374361011",
+        "categoryId": "16",
+        "hot": true,
+        "sliderImages": [
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/117a40a6d63c5bac590080733512b89d.jpeg",
+            "type": 1
+          },
+          {
+            "url": "https://o.devio.org/images/as/goods/images/2018-12-21/7d4449179b509531414365460d80a87d.jpeg",
+            "type": 1
+          }
+        ],
+        "marketPrice": "¥100",
+        "groupPrice": "14",
+        "completedNumText": "已拼1348件",
+        "goodsName": "吉祥鱼房间新年装饰客厅餐厅卧室玄背景墙亚克力3d立体自粘墙贴画",
+        "tags": "极速退款 全场包邮 7天无理由退货",
+        "joinedAvatars": null,
+        "createTime": "2020-01-30 16:52:41",
+        "sliderImage": "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg"
+      }
+    ],
+    "subcategoryList": [
+      {
+        "subcategoryId": "1",
+        "gorupName": null,
+        "categoryId": "1",
+        "subcategoryName": "新人专享",
+        "subcategoryIcon": "https://img.banggo.com/sources/cms/banggo2017/APP/shdga_1.jpg?x-oss-process=image/resize,m_pad,w_192,h_232",
+        "showType": "1"
+      },
+      {
+        "subcategoryId": "1",
+        "gorupName": null,
+        "categoryId": "1",
+        "subcategoryName": "积分商城",
+        "subcategoryIcon": "https://img.banggo.com/sources/cms/banggo2017/APP/shdga_2.jpg?x-oss-process=image/resize,m_pad,w_192,h_232",
+        "showType": "1"
+      },
+      {
+        "subcategoryId": "1",
+        "gorupName": null,
+        "categoryId": "1",
+        "subcategoryName": "近期上新",
+        "subcategoryIcon": "https://img.banggo.com/sources/cms/banggo2017/APP/shdga_3.jpg?x-oss-process=image/resize,m_pad,w_192,h_232",
+        "showType": "1"
+      },
+      {
+        "subcategoryId": "1",
+        "gorupName": null,
+        "categoryId": "1",
+        "subcategoryName": "新人专享",
+        "subcategoryIcon": "https://img.banggo.com/sources/cms/banggo2017/APP/shdga_4.jpg?x-oss-process=image/resize,m_pad,w_192,h_232",
+        "showType": "1"
+      },
+      {
+        "subcategoryId": "1",
+        "gorupName": null,
+        "categoryId": "1",
+        "subcategoryName": "限时特卖",
+        "subcategoryIcon": "https://img.banggo.com/sources/cms/banggo2017/APP/shdga_5.jpg?x-oss-process=image/resize,m_pad,w_192,h_232",
+        "showType": "1"
+      }
+    ]
+  }
+}

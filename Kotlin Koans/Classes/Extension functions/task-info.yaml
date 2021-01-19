@@ -1,0 +1,56 @@
+type: edu
+custom_name: Extension functions
+files:
+- name: src/Task.kt
+  visible: true
+  placeholders:
+  - offset: 30
+    length: 22
+    placeholder_text: TODO()
+    initial_state:
+      length: 6
+      offset: 30
+    initialized_from_dependency: false
+    selected: true
+    status: Unchecked
+    encrypted_possible_answer: RationalNumber(this, 1)
+  - offset: 95
+    length: 28
+    placeholder_text: TODO()
+    initial_state:
+      length: 6
+      offset: 79
+    initialized_from_dependency: false
+    selected: true
+    status: Unchecked
+    encrypted_possible_answer: RationalNumber(first, second)
+  text: |
+    fun Int.r(): RationalNumber = TODO()
+
+    fun Pair<Int, Int>.r(): RationalNumber = TODO()
+
+    data class RationalNumber(val numerator: Int, val denominator: Int)
+  learner_created: false
+- name: test/tests.kt
+  visible: false
+  text: |-
+    import org.junit.Test
+    import org.junit.Assert
+
+    class TestExtensionFunctions() {
+        @Test(timeout = 1000)
+        fun testIntExtension() {
+            Assert.assertEquals("Rational number creation error: ", RationalNumber(4, 1), 4.r())
+        }
+
+        @Test(timeout = 1000)
+        fun testPairExtension() {
+            Assert.assertEquals("Rational number creation error: ", RationalNumber(2, 3), Pair(2, 3).r())
+        }
+    }
+  learner_created: false
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Tue, 01 Dec 2020 12:20:06 UTC
+record: -1

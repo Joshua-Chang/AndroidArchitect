@@ -1,0 +1,10 @@
+include ':hi_debugtool'
+include ':common'
+//include ':hi-ui'
+//include ':hi-library'
+include ':hi-library'
+project(':hi-library').projectDir = "../hi-library/hi-library" as File
+include ':hi-ui'
+project(':hi-ui').projectDir = "../hi-ui/hi-ui" as File
+include ':app'
+rootProject.name = "ASProj"

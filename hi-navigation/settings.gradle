@@ -1,0 +1,4 @@
+include ':nav-compiler'
+include ':nav-annotation'
+include ':app'
+rootProject.name = "hi-navigation"

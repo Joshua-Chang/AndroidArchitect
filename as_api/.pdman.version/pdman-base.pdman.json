@@ -1,0 +1,120 @@
+{
+  "modules": [
+    {
+      "name": "as",
+      "chnname": "移动架构",
+      "entities": [
+        {
+          "title": "t_user",
+          "fields": [
+            {
+              "name": "用户ID",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "uid",
+              "pk": true,
+              "notNull": true,
+              "autoIncrement": true
+            },
+            {
+              "name": "幕客ID",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "imooc_id",
+              "notNull": true
+            },
+            {
+              "name": "订单ID",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "order_id",
+              "notNull": true
+            },
+            {
+              "name": "用户名",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "user_name",
+              "notNull": true
+            },
+            {
+              "name": "密码",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "pwd",
+              "notNull": true
+            },
+            {
+              "name": "创建时间",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "crate_time"
+            },
+            {
+              "name": "是否被禁用",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "forbid"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "用户信息表"
+        }
+      ],
+      "graphCanvas": {
+        "nodes": [],
+        "edges": []
+      },
+      "associations": []
+    }
+  ],
+  "version": "v1.0.0",
+  "message": "1.0.0版本",
+  "date": "2021/1/8 22:58:36"
+}

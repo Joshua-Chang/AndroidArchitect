@@ -1,0 +1,192 @@
+{
+  "modules": [
+    {
+      "name": "as",
+      "chnname": "移动架构",
+      "entities": [
+        {
+          "title": "t_user",
+          "fields": [
+            {
+              "name": "uid",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "用户ID",
+              "pk": true,
+              "notNull": true,
+              "autoIncrement": true
+            },
+            {
+              "name": "imooc_id",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "幕客ID",
+              "notNull": true
+            },
+            {
+              "name": "order_id",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "订单ID",
+              "notNull": true
+            },
+            {
+              "name": "user_name",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "用户名",
+              "notNull": true
+            },
+            {
+              "name": "pwd",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "密码",
+              "notNull": true
+            },
+            {
+              "name": "crate_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "forbid",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "是否被禁用"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "用户信息表"
+        }
+      ],
+      "graphCanvas": {
+        "nodes": [],
+        "edges": []
+      },
+      "associations": []
+    }
+  ],
+  "message": "调换位置",
+  "version": "v1.0.1",
+  "changes": [
+    {
+      "type": "field",
+      "name": "t_user.uid",
+      "opt": "add"
+    },
+    {
+      "type": "field",
+      "name": "t_user.imooc_id",
+      "opt": "add"
+    },
+    {
+      "type": "field",
+      "name": "t_user.order_id",
+      "opt": "add"
+    },
+    {
+      "type": "field",
+      "name": "t_user.user_name",
+      "opt": "add"
+    },
+    {
+      "type": "field",
+      "name": "t_user.pwd",
+      "opt": "add"
+    },
+    {
+      "type": "field",
+      "name": "t_user.crate_time",
+      "opt": "add"
+    },
+    {
+      "type": "field",
+      "name": "t_user.forbid",
+      "opt": "add"
+    },
+    {
+      "type": "field",
+      "name": "t_user.用户ID",
+      "opt": "delete"
+    },
+    {
+      "type": "field",
+      "name": "t_user.幕客ID",
+      "opt": "delete"
+    },
+    {
+      "type": "field",
+      "name": "t_user.订单ID",
+      "opt": "delete"
+    },
+    {
+      "type": "field",
+      "name": "t_user.用户名",
+      "opt": "delete"
+    },
+    {
+      "type": "field",
+      "name": "t_user.密码",
+      "opt": "delete"
+    },
+    {
+      "type": "field",
+      "name": "t_user.创建时间",
+      "opt": "delete"
+    },
+    {
+      "type": "field",
+      "name": "t_user.是否被禁用",
+      "opt": "delete"
+    }
+  ],
+  "date": "2021/1/8 23:8:54"
+}

@@ -1,0 +1,8 @@
+retrofit2/converter/gson/package-info.java
+ retrofit2.converter.gson.package-info
+retrofit2/converter/gson/GsonResponseBodyConverter.java
+ retrofit2.converter.gson.GsonResponseBodyConverter
+retrofit2/converter/gson/GsonRequestBodyConverter.java
+ retrofit2.converter.gson.GsonRequestBodyConverter
+retrofit2/converter/gson/GsonConverterFactory.java
+ retrofit2.converter.gson.GsonConverterFactory

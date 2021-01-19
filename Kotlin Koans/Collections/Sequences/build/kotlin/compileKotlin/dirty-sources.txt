@@ -1,0 +1,2 @@
+/Users/joshuachang/Documents/AndroidArchitect/Kotlin Koans/Collections/Sequences/src/Shop.kt
+/Users/joshuachang/Documents/AndroidArchitect/Kotlin Koans/Collections/Sequences/src/Task.kt
