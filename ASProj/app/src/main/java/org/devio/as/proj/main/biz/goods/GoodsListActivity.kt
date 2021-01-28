@@ -43,7 +43,13 @@ class GoodsListActivity : HiBaseActivity() {
             ft.add(R.id.container, fragment, FRAGMENT_TAG)
         }
         ft.show(fragment).commitNowAllowingStateLoss()
-        HiDataBus.with<String>("stickyData").observerSticky(this,true, Observer {
+        /**
+         * 黏性事件：就是在发送事件之后再订阅该事件也能收到该事件。
+         * Android中就有这样的实例，也就是Sticky Broadcast，即粘性广播。
+         * 正常情况下如果发送者发送了某个广播，而接收者在这个广播发送后才注册自己的Receiver，这时接收者便无法接收到刚才的广播，
+         * 为此Android引入了StickyBroadcast，在广播发送结束后会保存刚刚发送的广播（Intent），这样当接收者注册完 Receiver后就可以接收到刚才已经发布的广播
+         */
+        HiDataBus.with<String>("stickyData").observerSticky(this,false, Observer {
             showToast("data from dataBus:"+it)
         })
     }
