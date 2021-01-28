@@ -135,7 +135,7 @@ $ git rebase master
 ```
 
 <img src="https://git-scm.com/book/en/v2/images/basic-rebase-3.png" style="zoom:50%;" />
-2.回到 master 分支，进行一次快进合并。
+2.回到 master 分支，进行一次快进合并。(若有冲突需修改后add. --continue)
 
 ```shell
 $ git checkout master
@@ -233,15 +233,18 @@ $ git branch -d server
 
 `-x`**可选参数**附带原信息
 
-**冲突**
+### 冲突
 
 和merge/rebase一样，发生代码冲突，Cherry pick 会停下来，让用户决定如何继续操作
 
-修改完成后`git add .`  然后`git cherry-pick --continue`继续
+| Merge       | 手动修改冲突然后`add .`,提交新的`commit`                     |
+| ----------- | ------------------------------------------------------------ |
+| Rebase      | 手动修改冲突然后`add .`,`git rebase --continue`              |
+| Cherry-pick | 手动修改冲突然后`add .`,`git rebase --continue`/或者手动修改冲突`commit` |
 
-`git cherry-pick --abort`放弃合并恢复到冲突前
+修改完成后`git add .`  然后`git cherry-pick --continue`继续 `git rebase --continue`
 
-
+放弃合并恢复到冲突前 `git rebase --abort`/`git cherry-pick --abort`
 
 # remote
 
@@ -300,6 +303,10 @@ $ git remote show origin
 
  **跟踪分支**：在一个跟踪分支上`fetch` `pull` ` push` 能自动地识别去哪个远程仓库上抓取、合并到哪个本地分支
 
+- a`git push <remote> <branch>` `git push origin master`将 `master` 分支推送到 `origin` 仓库
+
+- 克隆一个仓库时，它通常会自动地创建一个跟踪 `origin/master` 的 `master` 分支
+
 - b（`git checkout -b <branch> <remote>/<branch>`）从一个远程分支检出一个本地分支，会自动创建所谓的“跟踪分支”。
   `git checkout -b <branch> <remote>/<branch>` 缩写`git checkout --track origin/serverfix` 
 
@@ -307,9 +314,7 @@ $ git remote show origin
 
   最简缩写最常用，全写通常用作检出并改名时
 
-- 克隆一个仓库时，它通常会自动地创建一个跟踪 `origin/master` 的 `master` 分支
-
-- 为已有的本地分支手动跟踪一个刚刚拉取下来的远程分支，使用 `git branch -u <remote>/<branch>`  `(--set-upstream-to)` 
+- 为已有的本地分支手动跟踪一个刚刚拉取下程分支，使用 `git branch -u <remote>/<branch>`  `(--set-upstream-to)`  
 
 `git branch -vv`:查看所有跟踪分支的领先落后信息，对比的是从远程仓库最后一次抓取的数据，未必是最新的（`git fetch --all; git branch -vv`先抓取所有的远程仓库再比较）
 
@@ -319,6 +324,19 @@ $ git remote show origin
  `git fetch` 命令只会将数据下载到你的本地仓库
 
 `git pull`命令自动抓取后合并该远程分支到当前分支 （fetch+marge）
+
+## push
+
+`git push`只推送commit到跟踪的远程分支
+
+`branch/tag` 增删都需要全名push：
+
+| 远程添加               | 远程删除                        | 本地删除                     |
+| ---------------------- | ------------------------------- | ---------------------------- |
+| `git push origin fix`  | `git push origin --delete fix`  | `git branch -d <branchname>` |
+| `git push origin v0.1` | `git push origin --delete v0.1` | `git tag -d <tagname>`       |
+
+`git push origin --tags` 远程添加全部tag
 
 ### 远程rebase
 
