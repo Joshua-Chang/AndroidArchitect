@@ -62,10 +62,6 @@ class LoginActivity : HiBaseActivity() {
             .navigation(this, REQUEST_CODE_REGISTRATION)//requestCode 在此处才会用到
     }
 
-    private fun showToast(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if ((resultCode == RESULT_OK) and (data != null) and (requestCode == REQUEST_CODE_REGISTRATION)) {

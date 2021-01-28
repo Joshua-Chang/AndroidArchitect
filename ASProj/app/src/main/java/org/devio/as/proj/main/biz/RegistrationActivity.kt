@@ -53,7 +53,4 @@ class RegistrationActivity : HiBaseActivity() {
             }
         })
     }
-    private fun showToast(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
-    }
 }

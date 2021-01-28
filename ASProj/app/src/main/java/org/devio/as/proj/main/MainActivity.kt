@@ -13,6 +13,7 @@ import org.devio.`as`.proj.main.http.api.AccountApi
 import org.devio.`as`.proj.main.logic.MainActivityLogic
 import org.devio.hi.library.restful.HiCallback
 import org.devio.hi.library.restful.HiResponse
+import org.devio.hi.library.util.HiDataBus
 import org.devio.hi.library.util.HiStatusBar
 
 class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
@@ -22,6 +23,7 @@ class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
         setContentView(R.layout.activity_main)
         activityLogic= MainActivityLogic(this, savedInstanceState)
         HiStatusBar.setStatusBar(this,true,Color.WHITE,false)
+        HiDataBus.with<String>("stickyData").setStickyData("stickyData from mainActivity")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
