@@ -292,6 +292,8 @@ $ git remote show origin
 
 远程分支是一种远程引用，是对远程仓库的分支/标签引用（指针），
 
+不存在合并远程分支，只有合并本地分支，然后推送到远程，最后删除远程和本地的分支
+
 `git ls-remote <remote>` 获得远程引用的完整列表 （或`git remote show <remote>`远程仓库信息）
 
 远程分支：以 `<remote>/<branch>` 的形式命名（如 `origin/master` ）。本地不从 `origin` 远程仓库`fetch`\`pull`，本地的 `origin/master` 指针就不会移动；一旦从远程仓库拉取，`origin/master` 指针便反映其最新状态。
