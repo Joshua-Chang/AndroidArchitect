@@ -83,7 +83,7 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
         this.mInflater = LayoutInflater.from(context)
     }
 
-    fun addItem(index: Int, item: HiDataItem<*, RecyclerView.ViewHolder>, notify: Boolean) {
+    fun addItem(index: Int, item: HiDataItem<*, out RecyclerView.ViewHolder>, notify: Boolean) {
         if (index > 0) {
             dataSets.add(index, item)
         } else {

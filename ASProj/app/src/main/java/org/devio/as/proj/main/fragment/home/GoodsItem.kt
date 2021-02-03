@@ -1,6 +1,7 @@
 package org.devio.`as`.proj.main.fragment.home
 
 import android.content.Context
+import android.os.Bundle
 import android.text.TextUtils
 import android.view.Gravity
 import android.view.View
@@ -15,6 +16,7 @@ import org.devio.`as`.proj.common.ui.view.loadUrl
 import org.devio.`as`.proj.main.R
 import org.devio.`as`.proj.main.model.GoodsModel
 import org.devio.`as`.proj.main.model.Subcategory
+import org.devio.`as`.proj.main.route.HiRoute
 import org.devio.hi.library.util.HiDisplayUtil
 import org.devio.hi.ui.item.HiDataItem
 
@@ -69,6 +71,12 @@ class GoodsItem(val goodsModel: GoodsModel, val hotTab: Boolean/*是热门还是
                 params.leftMargin = margin
             }
             holder.itemView.layoutParams = params
+        }
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("goodsId",goodsModel.goodsId)
+            bundle.putParcelable("goodsModel",goodsModel)
+            HiRoute.startActivity(context,bundle,HiRoute.Destination.DETAIL_MAIN)
         }
     }
 

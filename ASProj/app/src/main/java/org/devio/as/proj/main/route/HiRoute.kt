@@ -20,8 +20,9 @@ object HiRoute {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         AppGlobals.get()?.startActivity(intent)
     }
-    enum class Destination(val path: String){
-        GOODS_LIST("/goods/list")
+    enum class Destination(val desc:String,val path: String){
+        GOODS_LIST("商品列表","/goods/list"),
+        DETAIL_MAIN("详情页","/detail/main"),
     }
     fun startActivity(context: Context,bundle: Bundle,destination: Destination,requestCode:Int=-1){
         val postcard = ARouter.getInstance().build(destination.path).with(bundle)

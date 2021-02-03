@@ -15,6 +15,7 @@
         android:networkSecurityConfig="@xml/network_sercurity_config"
         >
         <activity android:name=".biz.goods.GoodsListActivity"></activity>
+        <activity android:name=".fragment.detail.DetailActivity"/>
         <activity android:name=".DegradeGlobalActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
