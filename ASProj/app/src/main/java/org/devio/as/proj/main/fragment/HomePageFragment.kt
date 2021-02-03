@@ -20,6 +20,7 @@ import org.devio.hi.library.log.HiLog
 import org.devio.hi.library.restful.HiCallback
 import org.devio.hi.library.restful.HiResponse
 import org.devio.hi.ui.tab.bottom.HiTabBottomLayout
+import org.devio.hi.ui.tab.common.IHiTabLayout
 import org.devio.hi.ui.tab.top.HiTabTopInfo
 
 class HomePageFragment : HiBaseFragment() {
@@ -39,6 +40,7 @@ class HomePageFragment : HiBaseFragment() {
                 override fun onSuccess(response: HiResponse<List<TabCategory>>) {
                     val data = response.data
                     if (response.successful() && data != null) {
+                        /**/
                         updateUI(data!!)
                     }
                 }
@@ -52,6 +54,13 @@ class HomePageFragment : HiBaseFragment() {
     private val topTabs = mutableListOf<HiTabTopInfo<Int>>()
     private var topTabSelectIndex: Int = 0
     private val DEFAULT_SELECT_INDEX: Int = 0
+    private val onTabSelectedListener =
+        IHiTabLayout.OnTabSelectedListener<HiTabTopInfo<*>> { index, lastSelectedInfo, selectedInfo ->
+            if (view_pager.currentItem != index) {
+                view_pager.setCurrentItem(index, false)
+            }
+        }
+
     private fun updateUI(data: List<TabCategory>) {
         if (!isAlive) return
         //topTabs需要提到全局，
@@ -67,37 +76,65 @@ class HomePageFragment : HiBaseFragment() {
         val topTabLayout = top_tab_layout
         topTabLayout.inflateInfo(topTabs as List<HiTabTopInfo<*>>)
         topTabLayout.defaultSelected(topTabs[DEFAULT_SELECT_INDEX])
-        topTabLayout.addTabSelectedChangeListener { index, lastSelectedInfo, selectedInfo ->
-            if (view_pager.currentItem != index) {
-                view_pager.setCurrentItem(index, false)
-            }
-        }
-        view_pager.adapter=HomePagerAdapter(childFragmentManager/**/,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,data)
-        view_pager.addOnPageChangeListener(object :ViewPager.SimpleOnPageChangeListener(){
-            //这个方法被触发有两种可能，第一种切换顶部tab  第二种 手动滑动翻页
-            override fun onPageSelected(position: Int) {
-                if (position!=topTabSelectIndex) {//手动滑动翻页:去通知topTabLayout进行切换
-                    topTabLayout.defaultSelected(topTabs[position])
-                    topTabSelectIndex = position
+        topTabLayout.addTabSelectedChangeListener(onTabSelectedListener)/*改造否则缓存和网络一共调两侧*/
+        if (view_pager.adapter==null) {
+            view_pager.adapter = HomePagerAdapter(
+                childFragmentManager/**/,
+                FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+            )
+            view_pager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+                //这个方法被触发有两种可能，第一种切换顶部tab  第二种 手动滑动翻页
+                override fun onPageSelected(position: Int) {
+                    if (position != topTabSelectIndex) {//手动滑动翻页:去通知topTabLayout进行切换
+                        topTabLayout.defaultSelected(topTabs[position])
+                        topTabSelectIndex = position
+                    }
                 }
-            }
-        })
+            })
+        }
+        (view_pager.adapter as HomePagerAdapter).update(data)
     }
 
-    inner class HomePagerAdapter(fm: FragmentManager, behavior: Int,val tabs:List<TabCategory>) :
+    inner class HomePagerAdapter(fm: FragmentManager, behavior: Int) :
         FragmentPagerAdapter(fm, behavior) {
-        //        private val tabs = mutableListOf<TabCategory>()
+        val tabs= mutableListOf<TabCategory>()
         private val fragments = SparseArray<Fragment>(tabs.size)
         override fun getItem(position: Int): Fragment {
-            var fragment = fragments.get(position, null)
+            val categoryId = tabs[position].categoryId
+            val categoryIdKey = categoryId.toInt()
+            var fragment = fragments.get(categoryIdKey, null)/*根据position来复用不合理，position0 缓存中是热门，请求后position0 变为最新*/
             if (fragment == null) {
-                fragment= HomeTabFragment.newInstance(tabs[position].categoryId)
-                fragments.put(position,fragment)
+                fragment = HomeTabFragment.newInstance(tabs[position].categoryId)
+                fragments.put(categoryIdKey, fragment)
             }
             return fragment
         }
+
+        override fun getItemPosition(`object`: Any): Int {
+            /*
+             * 判断刷新前后fragment在viewpager中的位置是否改变
+             * 改变了：none
+             * 未改变：
+             * 避免缓存的tab和新请求的tab一样，而fragment 先detach再通过getItem attach 重复生命周期浪费性能
+             * 同时兼顾缓存的tab和新请求的tab不一样的情况
+             * */
+            val indexOfValue = fragments.indexOfValue(`object` as Fragment)
+            val fragment = getItem(indexOfValue)/*刷新前的*fragment对象*/
+
+            return if (fragment==`object`)PagerAdapter.POSITION_UNCHANGED else PagerAdapter.POSITION_NONE
+        }
+        /*位置对应的item，若会发生变化，都应该复写。默认返回position*/
+        override fun getItemId(position: Int): Long {
+            return tabs[position].categoryId.toLong()
+        }
+
         override fun getCount(): Int {
             return tabs.size
+        }
+        fun update(list: List<TabCategory>){
+            tabs.clear()
+            tabs.addAll(list)
+            notifyDataSetChanged()
         }
     }
 }

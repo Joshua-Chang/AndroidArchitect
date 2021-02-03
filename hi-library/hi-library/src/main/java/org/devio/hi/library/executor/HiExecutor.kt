@@ -51,7 +51,7 @@ object HiExecutor {
 
             override fun afterExecute(r: Runnable?, t: Throwable?) {
                 //监控线程池耗时任务,线程创建数量,正在运行的数量
-                HiLog.e(TAG, "已执行完的任务的优先级是：" + (r as PriorityRunnable).priority)
+                HiLog.d(TAG, "已执行完的任务的优先级是：" + (r as PriorityRunnable).priority)
             }
         }
     }

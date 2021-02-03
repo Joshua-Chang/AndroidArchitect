@@ -2,7 +2,6 @@ package org.devio.`as`.proj.main.fragment.home
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,9 +9,9 @@ import org.devio.`as`.proj.common.ui.component.HiAbsListFragment
 import org.devio.`as`.proj.main.http.ApiFactory
 import org.devio.`as`.proj.main.http.api.HomeApi
 import org.devio.`as`.proj.main.model.HomeModel
-import org.devio.hi.library.log.HiLog
 import org.devio.hi.library.restful.HiCallback
 import org.devio.hi.library.restful.HiResponse
+import org.devio.hi.library.restful.annotation.CacheStrategy
 import org.devio.hi.ui.item.HiDataItem
 
 class HomeTabFragment : HiAbsListFragment() {
@@ -33,12 +32,12 @@ class HomeTabFragment : HiAbsListFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         categoryId = arguments?.getString("categoryId", DEFAULT_HOT_TAB_CATEGORY_ID)
         super.onViewCreated(view, savedInstanceState)
-        queryTabCategoryList()
-        enableLoadMore { queryTabCategoryList() }
+        queryTabCategoryList(CacheStrategy.CACHE_FIRST)
+        enableLoadMore { queryTabCategoryList(CacheStrategy.NET_ONLY) }
     }
 
-    private fun queryTabCategoryList() {
-        ApiFactory.create(HomeApi::class.java).queryTabCategoryList(categoryId!!, pageIndex, 10)
+    private fun queryTabCategoryList(cacheStrategy: Int) {
+        ApiFactory.create(HomeApi::class.java).queryTabCategoryList(cacheStrategy,categoryId!!, pageIndex, 10)
             .enqueue(object : HiCallback<HomeModel> {
                 override fun onSuccess(response: HiResponse<HomeModel>) {
                     if (response.successful() && response.data != null) {
@@ -47,6 +46,7 @@ class HomeTabFragment : HiAbsListFragment() {
                         finishRefresh(null)
                     }
                 }
+
                 override fun onFailed(throwable: Throwable) {
                     finishRefresh(null)
                 }
@@ -80,6 +80,6 @@ class HomeTabFragment : HiAbsListFragment() {
 
     override fun onRefresh() {
         super.onRefresh()
-        queryTabCategoryList()
+        queryTabCategoryList(CacheStrategy.NET_CACHE)
     }
 }

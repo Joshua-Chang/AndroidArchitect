@@ -7,7 +7,7 @@ import java.lang.reflect.Type
 
 class MethodParser(private val baseUrl: String, method: Method) {
 
-    private var domainUrl: String?=null
+    private var domainUrl: String? = null
     private var formPost: Boolean = true
     private var httpMethod: Int = 0
     private lateinit var relativeUrl: String
@@ -15,6 +15,7 @@ class MethodParser(private val baseUrl: String, method: Method) {
     private var headers: MutableMap<String, String> = mutableMapOf()
     private var parameters: MutableMap<String, String> = mutableMapOf()
     private var replaceRelativeUrl: String? = null
+    private var cacheStrategy: Int = CacheStrategy.NET_ONLY
 
     init {
         //parse method annotations such as get,headers,post baseUrl
@@ -88,6 +89,8 @@ class MethodParser(private val baseUrl: String, method: Method) {
                 }
             } else if (annotation is BaseUrl) {
                 domainUrl = annotation.value
+            } else if (annotation is CacheStrategy) {
+                cacheStrategy = annotation.value
             } else {
                 throw IllegalStateException("cannot handle method annotation:" + annotation.javaClass.toString())
             }
@@ -101,8 +104,8 @@ class MethodParser(private val baseUrl: String, method: Method) {
             String.format("method %s must has one of GET,POST,PUT,DELETE ", method.name)
         }
 
-        if (domainUrl==null){
-            domainUrl=baseUrl
+        if (domainUrl == null) {
+            domainUrl = baseUrl
         }
     }
 
@@ -128,18 +131,20 @@ class MethodParser(private val baseUrl: String, method: Method) {
             val annotation = annotations[0]
             if (annotation is Filed) {
                 val key = annotation.value
-                parameters[key]=value.toString()
-            }else if (annotation is Path){
+                parameters[key] = value.toString()
+            } else if (annotation is Path) {
                 val replaceName = annotation.value
                 val replacement = value.toString()
-                if (replaceName!=null&&replacement!=null) {
+                if (replaceName != null && replacement != null) {
                     //第一次替换 home/{categroyId}-》home/{1}
                     //relativeUrl = home/{categroyId}
 //                    val replace = relativeUrl.replace(replaceName, replacement)
 //                    relativeUrl=replace
                     replaceRelativeUrl = relativeUrl.replace("{$replaceName}", replacement)
                 }
-            }else{
+            } else if (annotation is CacheStrategy) {
+                cacheStrategy = value as Int
+            } else {
                 throw  IllegalStateException("cannot handle parameter annotation :" + annotation.javaClass.toString())
             }
         }
@@ -147,7 +152,7 @@ class MethodParser(private val baseUrl: String, method: Method) {
 
     private fun isPrimitive(value: Any): Boolean {
         //String
-        if (value.javaClass== String::class.java) {
+        if (value.javaClass == String::class.java) {
             return true
         }
         try {
@@ -159,29 +164,30 @@ class MethodParser(private val baseUrl: String, method: Method) {
             }
         } catch (e: IllegalAccessException) {
             e.printStackTrace()
-        }catch (e:NoSuchFieldException){
+        } catch (e: NoSuchFieldException) {
             e.printStackTrace()
         }
         return false
     }
 
-    fun newRequest(method: Method,args: Array<out Any>?) :HiRequest{
+    fun newRequest(method: Method, args: Array<out Any>?): HiRequest {
         val arguments = args as Array<Any>? ?: arrayOf()
-        parseMethodParameters(method,arguments)
+        parseMethodParameters(method, arguments)
 
-        var request=HiRequest()
+        var request = HiRequest()
         request.domainUrl = domainUrl
         request.returnType = returnType
-        request.relativeUrl = replaceRelativeUrl?:relativeUrl
+        request.relativeUrl = replaceRelativeUrl ?: relativeUrl
         request.parameters = parameters
         request.headers = headers
         request.httpMethod = httpMethod
-        request.formPost=formPost
+        request.formPost = formPost
+        request.cacheStrategy = cacheStrategy
         return request
     }
 
     companion object {
-        fun parse(baseUrl: String, method: Method ): MethodParser {
+        fun parse(baseUrl: String, method: Method): MethodParser {
             return MethodParser(baseUrl, method)
         }
     }

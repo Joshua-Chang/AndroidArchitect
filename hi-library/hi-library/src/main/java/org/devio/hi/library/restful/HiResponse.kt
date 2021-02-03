@@ -1,8 +1,10 @@
 package org.devio.hi.library.restful
 
+
 open class HiResponse<T> {
     companion object {
         val SUCCESS: Int = 0
+        val CACHE_SUCCESS: Int = 304
 
         const val RC_HAS_ERROR = 5000                   //有错误
         const val RC_ACCOUNT_INVALID = 5001            //账号不存在
@@ -26,6 +28,6 @@ open class HiResponse<T> {
     var msg: String? = null
 
     fun successful():Boolean{
-        return code== SUCCESS
+        return code== SUCCESS ||code == CACHE_SUCCESS
     }
 }
