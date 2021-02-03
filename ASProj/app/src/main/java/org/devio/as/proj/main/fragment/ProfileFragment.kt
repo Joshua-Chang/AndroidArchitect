@@ -14,12 +14,14 @@ import android.text.style.StyleSpan
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.launcher.ARouter
 import org.devio.`as`.proj.common.ui.component.HiBaseFragment
 import org.devio.`as`.proj.main.R
 import kotlinx.android.synthetic.main.fragment_profile_page.*
 import org.devio.`as`.proj.common.ui.view.loadCircle
 import org.devio.`as`.proj.common.ui.view.loadCorner
+import org.devio.`as`.proj.main.biz.account.AccountManager
 import org.devio.`as`.proj.main.http.ApiFactory
 import org.devio.`as`.proj.main.http.api.AccountApi
 import org.devio.`as`.proj.main.model.CourseNotice
@@ -72,22 +74,13 @@ class ProfileFragment : HiBaseFragment() {
     }
 
     private fun queryLoginUserData() {
-        ApiFactory.create(AccountApi::class.java).profile()
-            .enqueue(object : HiCallback<UserProfile> {
-                override fun onSuccess(response: HiResponse<UserProfile>) {
-                    val userProfile = response.data
-                    if (response.code == HiResponse.SUCCESS && userProfile != null) {
-                        updateUI(userProfile)
-                    } else {
-                        showToast(response.msg)
-                    }
-                }
-
-                override fun onFailed(throwable: Throwable) {
-                    showToast(throwable.message)
-                }
-            })
-
+        AccountManager.getUserProfile(this, Observer {profile->
+            if (profile != null) {
+                updateUI(profile)
+            }else{
+                showToast("用户信息获取失败")
+            }
+        },onlyCache = false)
     }
 
     private fun showToast(msg: String?) {
@@ -114,7 +107,10 @@ class ProfileFragment : HiBaseFragment() {
                  * @see ProfileFragment.onActivityResult 是fragment的回调，无法直接取到result。
                  * 需要在fragment所属Activity即MainActivity内onActivityResult，遍历所有fragment并调用其onActivityResult
                  */
-                ARouter.getInstance().build("/account/login").navigation(activity,REQUEST_CODE_LOGIN_PROFILE)
+//                ARouter.getInstance().build("/account/login").navigation(activity,REQUEST_CODE_LOGIN_PROFILE)
+                AccountManager.login(context, Observer { success->
+                    queryLoginUserData()
+                })
             }
         }
 
@@ -174,8 +170,8 @@ class ProfileFragment : HiBaseFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode==REQUEST_CODE_LOGIN_PROFILE&&resultCode==Activity.RESULT_OK&&data!=null) {
-            queryLoginUserData()
-        }
+//        if (requestCode==REQUEST_CODE_LOGIN_PROFILE&&resultCode==Activity.RESULT_OK&&data!=null) {
+//            queryLoginUserData()
+//        }
     }
 }

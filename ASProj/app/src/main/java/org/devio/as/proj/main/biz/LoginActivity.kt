@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.devio.`as`.proj.common.ui.component.HiBaseActivity
 import org.devio.`as`.proj.common.utils.SPUtil
 import org.devio.`as`.proj.main.R
+import org.devio.`as`.proj.main.biz.account.AccountManager
 import org.devio.`as`.proj.main.http.ApiFactory
 import org.devio.`as`.proj.main.http.api.AccountApi
 import org.devio.hi.library.restful.HiCallback
@@ -42,7 +43,7 @@ class LoginActivity : HiBaseActivity() {
                     if (response.code == HiResponse.SUCCESS) {
                         showToast(getString(R.string.login_success))
                         val data = response.data
-                        SPUtil.putString("boarding-pass", data!!)
+                        AccountManager.loginSuccess(data!!)
                         setResult(Activity.RESULT_OK, Intent())
                         finish()
                     } else {

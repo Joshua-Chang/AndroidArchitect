@@ -10,7 +10,7 @@ class BizInterceptor :HiInterceptor{
             val request = chain.request()
             val boardingPass = SPUtil.getString("boarding-pass")?:""
 
-            request.addHeader("boarding-pass",boardingPass)
+            request.addHeader("boarding-pass", boardingPass)// TODO: 2021/2/3 在accountManager中获取
             request.addHeader("auth-token","fd82d1e882462e23b8e88aa82198f197")
         }else if (chain.response()!=null){
             HiLog.dt("BizInterceptor",chain.request().endPointUrl())
