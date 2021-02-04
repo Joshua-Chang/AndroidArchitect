@@ -4,18 +4,32 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.drawable.Drawable
+import android.text.TextUtils
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
+import org.devio.hi.library.util.HiViewUtil
 
 fun ImageView.loadUrl(url: String) {
+    if (HiViewUtil.isActivityDestroyed(context) || TextUtils.isEmpty(url)) return
     Glide.with(this).load(url).into(this)
 }
-
+fun ImageView.loadUrl(url: String,callback: (Drawable)->Unit){
+    if (HiViewUtil.isActivityDestroyed(context)||TextUtils.isEmpty(url)) return
+    Glide.with(context).load(url).into(object :SimpleTarget<Drawable>(){
+        override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+            callback(resource)
+        }
+    })
+}
 fun ImageView.loadCircle(url: String) {
+    if (HiViewUtil.isActivityDestroyed(context) || TextUtils.isEmpty(url)) return
     Glide.with(this).load(url).transform(CenterCrop()).into(this)
 }
 //和imageView的CenterCrop有冲突，加载bitmap后先圆角，然后centerCrop，圆角有可能被裁减掉
@@ -23,6 +37,7 @@ fun ImageView.loadCircle(url: String) {
 
 fun ImageView.loadCorner(url: String, corner: Int) {
     //加载bitmap后先centerCrop，然后圆角
+    if (HiViewUtil.isActivityDestroyed(context) || TextUtils.isEmpty(url)) return
     Glide.with(this).load(url).transform(CenterCrop(), RoundedCorners(corner)).into(this)
 }
 
@@ -31,6 +46,7 @@ fun ImageView.loadCircleBorder(
     borderWidth: Float = 0f,
     borderColor: Int = Color.WHITE
 ) {
+    if (HiViewUtil.isActivityDestroyed(context) || TextUtils.isEmpty(url)) return
     Glide.with(this).load(url).into(this)
 }
 

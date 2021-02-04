@@ -16,18 +16,20 @@ import org.devio.`as`.proj.common.ui.view.loadUrl
 import org.devio.`as`.proj.main.R
 import org.devio.`as`.proj.main.model.GoodsModel
 import org.devio.`as`.proj.main.model.Subcategory
+import org.devio.`as`.proj.main.model.selectPrice
 import org.devio.`as`.proj.main.route.HiRoute
 import org.devio.hi.library.util.HiDisplayUtil
 import org.devio.hi.ui.item.HiDataItem
+import org.devio.hi.ui.item.HiViewHolder
 
-class GoodsItem(val goodsModel: GoodsModel, val hotTab: Boolean/*是热门还是女装*/) :
-    HiDataItem<GoodsModel, RecyclerView.ViewHolder>(goodsModel) {
+open class GoodsItem(val goodsModel: GoodsModel, val hotTab: Boolean/*是热门还是女装*/) :
+    HiDataItem<GoodsModel, HiViewHolder>(goodsModel) {
     private val MAX_TAG_SIZE = 3
-    override fun onBindData(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindData(holder: HiViewHolder, position: Int) {
         val context = holder.itemView.context
         holder.itemView.item_image.loadUrl(goodsModel.sliderImage!!)
         holder.itemView.item_title.text = goodsModel.goodsName
-        holder.itemView.item_price.text = goodsModel.marketPrice
+        holder.itemView.item_price.text = selectPrice(goodsModel.groupPrice,goodsModel.marketPrice)
         holder.itemView.item_sale_desc.text = goodsModel.completedNumText
 
         val itemLabelContainer = holder.itemView.item_label_container
@@ -106,4 +108,5 @@ class GoodsItem(val goodsModel: GoodsModel, val hotTab: Boolean/*是热门还是
     override fun getSpanSize(): Int {
         return if (hotTab) super.getSpanSize() else 1
     }
+
 }

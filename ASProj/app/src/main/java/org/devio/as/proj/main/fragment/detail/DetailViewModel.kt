@@ -5,7 +5,9 @@ import androidx.lifecycle.*
 import org.devio.`as`.proj.main.BuildConfig
 import org.devio.`as`.proj.main.http.ApiFactory
 import org.devio.`as`.proj.main.http.api.DetailApi
+import org.devio.`as`.proj.main.http.api.FavoriteApi
 import org.devio.`as`.proj.main.model.DetailModel
+import org.devio.`as`.proj.main.model.Favorite
 import org.devio.hi.library.restful.HiCallback
 import org.devio.hi.library.restful.HiResponse
 
@@ -55,5 +57,22 @@ class DetailViewModel(val goodsId: String?) : ViewModel() {
                 })
         }
         return pageData
+    }
+
+    fun toggleFavorite(): LiveData<Boolean?> {
+        val toggleFavoriteData = MutableLiveData<Boolean?>()
+        if (TextUtils.isEmpty(goodsId)) {
+            ApiFactory.create(FavoriteApi::class.java).favorite(goodsId!!)
+                .enqueue(object :HiCallback<Favorite>{
+                    override fun onSuccess(response: HiResponse<Favorite>) {
+                        toggleFavoriteData.postValue(response.data?.isFavorite)
+                    }
+
+                    override fun onFailed(throwable: Throwable) {
+                        toggleFavoriteData.postValue(null)
+                    }
+                })
+        }
+        return toggleFavoriteData
     }
 }
