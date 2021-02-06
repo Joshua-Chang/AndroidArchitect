@@ -41,18 +41,12 @@ class ProfileFragment : HiBaseFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        item_course.setText(R.string.if_notify)
-        item_course.append(ITEM_PLACE_HOLDER + getString(R.string.item_notify))
 
-        item_collection.setText(R.string.if_collection)
-        item_collection.append(ITEM_PLACE_HOLDER + getString(R.string.item_collection))
-
-        item_collection.setText(R.string.if_address)
-        item_collection.append(ITEM_PLACE_HOLDER + getString(R.string.item_address))
-
-        item_collection.setText(R.string.if_history)
-        item_collection.append(ITEM_PLACE_HOLDER + getString(R.string.item_history))
-
+//        item_collection.setText(R.string.if_collection)
+//        item_collection.append(ITEM_PLACE_HOLDER + getString(R.string.item_collection))
+        ll_notice.setOnClickListener {
+            ARouter.getInstance().build("/notice/list").navigation(context)
+        }
         queryLoginUserData()
         queryCourseNotice()
     }
