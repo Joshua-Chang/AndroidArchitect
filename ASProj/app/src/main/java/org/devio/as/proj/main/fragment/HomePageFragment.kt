@@ -7,12 +7,15 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.devio.`as`.proj.common.ui.component.HiBaseFragment
 import org.devio.`as`.proj.main.R
 import org.devio.`as`.proj.main.fragment.home.HomeTabFragment
+import org.devio.`as`.proj.main.fragment.home.HomeViewModel
 import org.devio.`as`.proj.main.http.ApiFactory
 import org.devio.`as`.proj.main.http.api.HomeApi
 import org.devio.`as`.proj.main.model.TabCategory
@@ -31,24 +34,11 @@ class HomePageFragment : HiBaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         HiTabBottomLayout.clipBottomPadding(view_pager)
-        queryTabList()
-    }
-
-    private fun queryTabList() {
-        ApiFactory.create(HomeApi::class.java).queryTabList()
-            .enqueue(object : HiCallback<List<TabCategory>> {
-                override fun onSuccess(response: HiResponse<List<TabCategory>>) {
-                    val data = response.data
-                    if (response.successful() && data != null) {
-                        /**/
-                        updateUI(data!!)
-                    }
-                }
-
-                override fun onFailed(throwable: Throwable) {
-                    throwable.printStackTrace()
-                }
-            })
+//        queryTabList()
+        val viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel.queryCategoryTab().observe(viewLifecycleOwner, Observer {
+            it?.let { updateUI(it) }
+        })
     }
 
     private val topTabs = mutableListOf<HiTabTopInfo<Int>>()
