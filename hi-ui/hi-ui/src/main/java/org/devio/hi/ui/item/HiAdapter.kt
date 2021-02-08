@@ -18,8 +18,9 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
     private var mContext: Context? = null
     private var mInflater: LayoutInflater? = null
     private var dataSets = ArrayList<HiDataItem<*, out RecyclerView.ViewHolder>>()
-    private var typeArrays = SparseArray<HiDataItem<*, out RecyclerView.ViewHolder>>()
 
+    //    private var typeArrays = SparseArray<HiDataItem<*, out RecyclerView.ViewHolder>>()
+    private val typePositions = SparseIntArray()
 
     private var headers = SparseArray<View>()
     private var footers = SparseArray<View>()
@@ -33,6 +34,7 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
             notifyItemInserted(headers.size() - 1)
         }
     }
+
     fun removeHeaderView(view: View) {
         val indexOfValue = headers.indexOfValue(view)
         if (indexOfValue < 0) return
@@ -56,6 +58,7 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
         //position代表的是在列表中分位置
         notifyItemRemoved(indexOfValue + getHeaderSize() + getOriginalItemSize())
     }
+
     fun getHeaderSize(): Int {
         return headers.size()
     }
@@ -67,6 +70,7 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
     fun getOriginalItemSize(): Int {
         return dataSets.size
     }
+
     private fun isHeaderPosition(position: Int): Boolean {
         // 5 --> 4 3 2 1
         return position < headers.size()
@@ -135,7 +139,7 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (isHeaderPosition(position)){
+        if (isHeaderPosition(position)) {
             return headers.keyAt(position)
         }
         if (isFooterPosition(position)) {
@@ -148,9 +152,11 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
 //        val dataItem = dataSets[position]//重新计算
         val dataItem = dataSets[itemPosition]//
         val type = dataItem.javaClass.hashCode()
-        if (typeArrays.indexOfKey(type) < 0) {
-            typeArrays.put(type, dataItem)
-        }
+        /*在viewBinding时，仅第一次会把type与item关联*/
+//        if (typeArrays.indexOfKey(type) < 0) {
+//            typeArrays.put(type, dataItem)
+//        }
+        typePositions.put(type, position)
         return type
     }
 
@@ -165,7 +171,12 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
         }
         //非Header/Footer类型
 
-        val dataItem = typeArrays.get(viewType)
+        /*在viewBinding时，仅第一次会把type与item关联*/
+//        val dataItem = typeArrays.get(viewType)
+        val position = typePositions.get(viewType)
+        val dataItem = dataSets.get(position)
+        val vh=dataItem.onCreateViewHolder(parent)
+        if (vh != null)return vh
         var view: View? = dataItem.getItemView(parent)
         if (view == null) {
             val layoutRes = dataItem.getItemLayoutRes()
@@ -189,11 +200,15 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
         //所以进一步判断它是不是参数泛型
 //        javaClass.superclass 加generic的方法实质是1.5范型出来以后对类型新的封装 多加了带范型的表示方法
         //https://qidawu.github.io/2018/11/21/java-reflection-generic-type/
-        val superclass = javaClass.genericSuperclass//得到该Item的带范型的父类类型,HiDataItem<ItemData, GirdDataItem.MyHolder>
+        val superclass =
+            javaClass.genericSuperclass//得到该Item的带范型的父类类型,HiDataItem<ItemData, GirdDataItem.MyHolder>
         if (superclass is ParameterizedType) {
-            val actualTypeArguments = superclass.actualTypeArguments//得到具体范型参数,即<ItemData, GirdDataItem.MyHolder>
+            val actualTypeArguments =
+                superclass.actualTypeArguments//得到具体范型参数,即<ItemData, GirdDataItem.MyHolder>
             for (argument in actualTypeArguments) {//遍历取出其中是RecyclerView.ViewHolder子类的那个参数类型
-                if (argument is Class<*> && RecyclerView.ViewHolder::class.java.isAssignableFrom(argument)
+                if (argument is Class<*> && RecyclerView.ViewHolder::class.java.isAssignableFrom(
+                        argument
+                    )
                 ) {
                     try {
                         //如果是则使用反射 实例化类上标记的实际的泛型对象
@@ -220,8 +235,9 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
     override fun getItemCount(): Int {
-        return dataSets.size+getHeaderSize()+getHeaderSize()
+        return dataSets.size + getHeaderSize() + getHeaderSize()
     }
+
     /**
      * 处理grid
      */
@@ -231,17 +247,17 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
         val layoutManager = recyclerView.layoutManager
         if (layoutManager is GridLayoutManager) {
             val spanCount = layoutManager.spanCount
-            layoutManager.spanSizeLookup= object :GridLayoutManager.SpanSizeLookup(){
+            layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
                     if (isHeaderPosition(position) || isFooterPosition(position)) {
                         return spanCount
                     }
                     val itemPosition = position - getHeaderSize()//重新计算
-                    if (itemPosition<dataSets.size) {
+                    if (itemPosition < dataSets.size) {
                         val hiDataItem = getItem(itemPosition)
                         if (hiDataItem != null) {
                             val spanSize = hiDataItem.getSpanSize()
-                            return if (spanSize<=0/*没复写设置spanSize的item默认占整行*/) spanCount else spanSize
+                            return if (spanSize <= 0/*没复写设置spanSize的item默认占整行*/) spanCount else spanSize
                         }
                     }
                     return spanCount
@@ -249,12 +265,14 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
             }
         }
     }
+
     private var recyclerViewRef: WeakReference<RecyclerView>? = null
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         super.onDetachedFromRecyclerView(recyclerView)
         recyclerViewRef?.clear()
     }
+
     open fun getAttachRecyclerView(): RecyclerView? {
         return recyclerViewRef?.get()
     }

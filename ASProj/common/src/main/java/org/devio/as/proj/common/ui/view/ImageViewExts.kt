@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -34,11 +35,15 @@ fun ImageView.loadCircle(url: String) {
 }
 //和imageView的CenterCrop有冲突，加载bitmap后先圆角，然后centerCrop，圆角有可能被裁减掉
 //Glide.with(this).load(url).transform(RoundedCorners(corner)).into(this)
-
+@BindingAdapter(value = ["url","corner"],requireAll = false)/*两个参数不必全部，有一个参数即可调用此方法*/
 fun ImageView.loadCorner(url: String, corner: Int) {
     //加载bitmap后先centerCrop，然后圆角
     if (HiViewUtil.isActivityDestroyed(context) || TextUtils.isEmpty(url)) return
-    Glide.with(this).load(url).transform(CenterCrop(), RoundedCorners(corner)).into(this)
+    val transform = Glide.with(this).load(url).transform(CenterCrop())
+    if (corner>0) {
+        RoundedCorners(corner)
+    }
+    transform.into(this)
 }
 
 fun ImageView.loadCircleBorder(
