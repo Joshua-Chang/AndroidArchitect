@@ -16,12 +16,7 @@ import org.devio.`as`.proj.common.ui.component.HiBaseFragment
 import org.devio.`as`.proj.main.R
 import org.devio.`as`.proj.main.fragment.home.HomeTabFragment
 import org.devio.`as`.proj.main.fragment.home.HomeViewModel
-import org.devio.`as`.proj.main.http.ApiFactory
-import org.devio.`as`.proj.main.http.api.HomeApi
 import org.devio.`as`.proj.main.model.TabCategory
-import org.devio.hi.library.log.HiLog
-import org.devio.hi.library.restful.HiCallback
-import org.devio.hi.library.restful.HiResponse
 import org.devio.hi.ui.tab.bottom.HiTabBottomLayout
 import org.devio.hi.ui.tab.common.IHiTabLayout
 import org.devio.hi.ui.tab.top.HiTabTopInfo

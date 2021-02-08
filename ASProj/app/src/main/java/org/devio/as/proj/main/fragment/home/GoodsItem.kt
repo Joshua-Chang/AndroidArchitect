@@ -4,15 +4,20 @@ import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_profile_page.view.*
 import kotlinx.android.synthetic.main.layout_home_goods_list_item1.view.*
 import org.devio.`as`.proj.common.ui.view.loadUrl
+import org.devio.`as`.proj.main.BR
 import org.devio.`as`.proj.main.R
 import org.devio.`as`.proj.main.model.GoodsModel
 import org.devio.`as`.proj.main.model.Subcategory
@@ -23,14 +28,16 @@ import org.devio.hi.ui.item.HiDataItem
 import org.devio.hi.ui.item.HiViewHolder
 
 open class GoodsItem(val goodsModel: GoodsModel, val hotTab: Boolean/*是热门还是女装*/) :
-    HiDataItem<GoodsModel, HiViewHolder>(goodsModel) {
+    HiDataItem<GoodsModel, GoodsItem.GoodsItemHolder>(goodsModel) {
     private val MAX_TAG_SIZE = 3
-    override fun onBindData(holder: HiViewHolder, position: Int) {
+    override fun onBindData(holder: GoodsItem.GoodsItemHolder, position: Int) {
         val context = holder.itemView.context
-        holder.itemView.item_image.loadUrl(goodsModel.sliderImage!!)
-        holder.itemView.item_title.text = goodsModel.goodsName
-        holder.itemView.item_price.text = selectPrice(goodsModel.groupPrice,goodsModel.marketPrice)
-        holder.itemView.item_sale_desc.text = goodsModel.completedNumText
+//        holder.itemView.item_image.loadUrl(goodsModel.sliderImage!!)
+//        holder.itemView.item_title.text = goodsModel.goodsName
+//        holder.itemView.item_price.text = selectPrice(goodsModel.groupPrice, goodsModel.marketPrice)
+//        holder.itemView.item_sale_desc.text = goodsModel.completedNumText
+
+        holder.binding.setVariable(BR.goodsModel,goodsModel)
 
         val itemLabelContainer = holder.itemView.item_label_container
         if (itemLabelContainer != null) {
@@ -40,7 +47,7 @@ open class GoodsItem(val goodsModel: GoodsModel, val hotTab: Boolean/*是热门�
                 for (index in split.indices) {
                     val childCount = itemLabelContainer.childCount
                     if (index > MAX_TAG_SIZE - 1) {
-                        for (index in childCount-1 downTo MAX_TAG_SIZE){
+                        for (index in childCount - 1 downTo MAX_TAG_SIZE) {
                             itemLabelContainer.removeViewAt(index)
                         }
                         break
@@ -76,9 +83,9 @@ open class GoodsItem(val goodsModel: GoodsModel, val hotTab: Boolean/*是热门�
         }
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("goodsId",goodsModel.goodsId)
-            bundle.putParcelable("goodsModel",goodsModel)
-            HiRoute.startActivity(context,bundle,HiRoute.Destination.DETAIL_MAIN)
+            bundle.putString("goodsId", goodsModel.goodsId)
+            bundle.putParcelable("goodsModel", goodsModel)
+            HiRoute.startActivity(context, bundle, HiRoute.Destination.DETAIL_MAIN)
         }
     }
 
@@ -101,12 +108,31 @@ open class GoodsItem(val goodsModel: GoodsModel, val hotTab: Boolean/*是热门�
         return labelView
     }
 
+
     override fun getItemLayoutRes(): Int {
         return if (hotTab) R.layout.layout_home_goods_list_item1 else R.layout.layout_home_goods_list_item2
     }
+
+//    override fun getItemView(parent: ViewGroup): View? {
+//        val inflater = LayoutInflater.from(parent.context)
+//        binding =
+//            DataBindingUtil.inflate<ViewDataBinding>(inflater, getItemLayoutRes(), parent, false)
+//        return binding!!.root
+//    }
 
     override fun getSpanSize(): Int {
         return if (hotTab) super.getSpanSize() else 1
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup): GoodsItemHolder? {
+        val inflater = LayoutInflater.from(parent.context)
+        var binding =
+            DataBindingUtil.inflate<ViewDataBinding>(inflater, getItemLayoutRes(), parent, false)
+        return GoodsItemHolder(binding)
+    }
+
+    /*binding和viewHolder相关联*/
+    class GoodsItemHolder(val binding: ViewDataBinding) : HiViewHolder(binding.root) {
+
+    }
 }

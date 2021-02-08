@@ -33,23 +33,33 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'com.github.bumptech.glide:okhttp3-integration:4.11.0'
-    api project(path: ':hi-ui')
     api project(path: ':hi-library')
+    api project(path: ':hi-ui')
+
     implementation dependency.lifecycle_extensions
     kapt dependency.lifecycle_compiler
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    api dependency.constraintlayout
+    api dependency.appcompat
+    api dependency.material
+    api dependency.recyclerview
+    api dependency.fragment_ktx
 
+    //glide图片
     implementation dependency.glide
     kapt dependency.glide_compiler
+
+    //http
+    implementation dependency.retrofit
+    api dependency.gson
+
+    //arouter
+    implementation dependency.arouter_api
+    //api project(':flutter')
 }
