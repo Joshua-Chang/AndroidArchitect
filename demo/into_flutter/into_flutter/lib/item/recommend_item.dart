@@ -1,38 +1,12 @@
 import 'package:flutter/material.dart';
-
-const GOODS_ITEM = {
-  "goodsId": "1580374361011",
-  "categoryId": "16",
-  "hot": true,
-  "sliderImages": [
-    {
-      "url":
-      "https://o.devio.org/images/as/goods/images/2018-12-21/5c3672e33377b65d5f1bef488686462b.jpeg",
-      "type": 1
-    },
-    {
-      "url":
-      "https://o.devio.org/images/as/goods/images/2018-12-21/117a40a6d63c5bac590080733512b89d.jpeg",
-      "type": 1
-    },
-    {
-      "url":
-      "https://o.devio.org/images/as/goods/images/2018-12-21/7d4449179b509531414365460d80a87d.jpeg",
-      "type": 1
-    }
-  ],
-  "marketPrice": "¥100",
-  "groupPrice": "14",
-  "completedNumText": "已拼1348件",
-  "goodsName": "男长款羽绒外套",
-  "tags": "极速退款 全场包邮 7天无理由退货",
-  "joinedAvatars": null,
-  "createTime": "2020-01-30 16:52:41",
-  "sliderImage":
-  "http://pic.banggo.com/sources/images/goods/MB/229386/229386_00.jpg?x-oss-process=image/resize,m_pad,w_720,h_720"
-};
+import 'package:into_flutter/model/goods_model.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class RecommendItem extends StatelessWidget {
+  final GoodsModel item;
+  final int index;
+  const RecommendItem({Key key, this.item, this.index}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -51,7 +25,7 @@ class RecommendItem extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.all(4),
                 child: Text(
-                  GOODS_ITEM['goodsName'],
+                  item.goodsName,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontSize: 14, color: Colors.black87),
@@ -66,7 +40,17 @@ class RecommendItem extends StatelessWidget {
   }
 
   _itemImage(BuildContext context) {
-    return Image.network(GOODS_ITEM['sliderImage']);
+    // return Image.network(item.sliderImage);
+    final size = MediaQuery.of(context).size;
+
+    return Container(
+      constraints: BoxConstraints(minHeight: size.width / 2),
+      child: FadeInImage.memoryNetwork(
+        placeholder: kTransparentImage,
+        image: item.sliderImage,
+        fit: BoxFit.cover,
+      ),
+    );
   }
 
   _infoText() {
@@ -75,17 +59,32 @@ class RecommendItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Padding(padding: EdgeInsets.only(bottom: 5),
-            child: Text(GOODS_ITEM['tags'], style:
-            TextStyle(fontSize: 11, color: Colors.deepOrangeAccent),),),
-          Row(children: <Widget>[
-            Text("¥", style: TextStyle(fontSize: 10, color: Colors.redAccent),),
-            Padding(padding: EdgeInsets.only(right: 5),
-              child: Text(GOODS_ITEM['groupPrice'],
-                style: TextStyle(fontSize: 18, color: Colors.redAccent),),),
-            Text(GOODS_ITEM['completedNumText'],
-              style: TextStyle(fontSize: 12, color: Colors.grey),),
-          ],)
+          Padding(
+            padding: EdgeInsets.only(bottom: 5),
+            child: Text(
+              item.tags,
+              style: TextStyle(fontSize: 11, color: Colors.deepOrangeAccent),
+            ),
+          ),
+          Row(
+            children: <Widget>[
+              Text(
+                "¥",
+                style: TextStyle(fontSize: 10, color: Colors.redAccent),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 5),
+                child: Text(
+                  item.groupPrice,
+                  style: TextStyle(fontSize: 18, color: Colors.redAccent),
+                ),
+              ),
+              Text(
+                item.completedNumText,
+                style: TextStyle(fontSize: 12, color: Colors.grey),
+              ),
+            ],
+          )
         ],
       ),
     );

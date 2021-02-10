@@ -1,8 +1,11 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:into_flutter/http/hi_error.dart';
 import 'package:into_flutter/http/request/base_request.dart';
 import 'package:http/http.dart' as http;
+
+const userDio = true;
 
 class HiHttp {
   HiHttp._();
@@ -32,14 +35,21 @@ class HiHttp {
       uri = Uri.http(request.url(), request.path());
     }
     var header = getHeaderParams();
-    http.Response response = await http.get(uri.toString(), headers: header);
-    var utf8decoder = Utf8Decoder();
-    var result;
-    if (response.headers["content-type"].contains("/json")) {
-      result = json.decode(utf8decoder.convert(response.bodyBytes));
+    var response, result;
+    if (userDio) {
+      response =
+          await Dio().get(uri.toString(), options: Options(headers: header));
+      result = response.data;
     } else {
-      result = utf8.decode(response.bodyBytes);
+      response = await http.get(uri.toString(), headers: header);
+      var utf8decoder = Utf8Decoder();
+      if (response.headers["content-type"].contains("/json")) {
+        result = json.decode(utf8decoder.convert(response.bodyBytes));
+      } else {
+        result = utf8.decode(response.bodyBytes);
+      }
     }
+
     if (response.statusCode == 200) {
       if (result['code'] == 0) {
         return result['data'];
