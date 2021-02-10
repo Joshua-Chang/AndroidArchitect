@@ -96,7 +96,7 @@ class CategoryFragment : HiBaseFragment() {
                 }
 
                 override fun onFailed(throwable: Throwable) {
-                    TODO("Not yet implemented")
+                    throwable.printStackTrace()
                 }
             })
     }

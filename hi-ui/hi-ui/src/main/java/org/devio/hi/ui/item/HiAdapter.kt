@@ -1,8 +1,8 @@
 package org.devio.hi.ui.item
 
 import android.content.Context
-import android.util.Log
 import android.util.SparseArray
+import android.util.SparseIntArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import java.lang.ref.WeakReference
 import java.lang.reflect.ParameterizedType
-import java.util.ArrayList
-import kotlin.math.log
+import java.util.*
 
 class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var mContext: Context? = null
@@ -101,9 +100,13 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
 
     fun addItems(items: List<HiDataItem<*, out RecyclerView.ViewHolder>>, notify: Boolean) {
         val start = dataSets.size
-        for (item in items) {
-            dataSets.add(item)
+        items.forEach { dataItem->
+            dataSets.add(dataItem)
+            dataItem.setAdapter(this)
         }
+//        for (item in items) {
+//            dataSets.add(item)
+//        }
         if (notify) {
             notifyItemRangeInserted(start, items.size)
         }
@@ -174,7 +177,7 @@ class HiAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder
         /*在viewBinding时，仅第一次会把type与item关联*/
 //        val dataItem = typeArrays.get(viewType)
         val position = typePositions.get(viewType)
-        val dataItem = dataSets.get(position)
+        val dataItem = dataSets[position]
         val vh=dataItem.onCreateViewHolder(parent)
         if (vh != null)return vh
         var view: View? = dataItem.getItemView(parent)
