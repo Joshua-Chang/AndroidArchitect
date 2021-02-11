@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class RecommendPage extends StatefulWidget {
   @override
-  _FavoritePageState createState() => _FavoritePageState();
+  _RecommendPageState createState() => _RecommendPageState();
 }
 
-class _FavoritePageState extends State<RecommendPage> {
+class _RecommendPageState extends State<RecommendPage> {
   @override
   Widget build(BuildContext context) {
     return Container(child: Text('推荐模块'),);
