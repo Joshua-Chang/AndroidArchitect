@@ -43,8 +43,8 @@ android {
     buildFeatures {
         viewBinding true
     }
-    dataBinding{
-        enabled=true
+    dataBinding {
+        enabled = true
     }
 }
 androidExtensions {
@@ -68,4 +68,5 @@ dependencies {
     implementation dependency.arouter_api
     kapt dependency.arouter_compiler
     debugImplementation project(':hi_debugtool')
+    implementation project(':flutter')
 }
