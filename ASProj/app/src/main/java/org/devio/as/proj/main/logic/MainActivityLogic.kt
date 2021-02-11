@@ -1,5 +1,6 @@
 package org.devio.`as`.proj.main.logic
 
+import FavoriteFragment
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
@@ -9,13 +10,12 @@ import androidx.fragment.app.FragmentManager
 import org.devio.`as`.proj.common.tab.FragmentTabView
 import org.devio.`as`.proj.common.tab.HiTabViewAdapter
 import org.devio.`as`.proj.main.R
-import org.devio.`as`.proj.main.fragment.category.CategoryFragment
-import org.devio.`as`.proj.main.fragment.FavoriteFragment
 import org.devio.`as`.proj.main.fragment.HomePageFragment
 import org.devio.`as`.proj.main.fragment.ProfileFragment
+import org.devio.`as`.proj.main.fragment.RecommendFragment
+import org.devio.`as`.proj.main.fragment.category.CategoryFragment
 import org.devio.hi.ui.tab.bottom.HiTabBottomInfo
 import org.devio.hi.ui.tab.bottom.HiTabBottomLayout
-import kotlin.collections.ArrayList
 
 class MainActivityLogic(val activityProvider: ActivityProvider,saveInstanceState: Bundle?) {
     init {
@@ -53,7 +53,7 @@ class MainActivityLogic(val activityProvider: ActivityProvider,saveInstanceState
             defaultColor,
             tintColor
         )
-        infoRecommend.fragment = HomePageFragment::class.java
+        infoRecommend.fragment = FavoriteFragment::class.java
 
         val infoCategory = HiTabBottomInfo(
             "分类",
@@ -73,7 +73,7 @@ class MainActivityLogic(val activityProvider: ActivityProvider,saveInstanceState
             defaultColor,
             tintColor
         )
-        infoChat.fragment = FavoriteFragment::class.java
+        infoChat.fragment = RecommendFragment::class.java
 
         val infoProfile = HiTabBottomInfo(
             "我的",

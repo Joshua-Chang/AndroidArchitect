@@ -8,3 +8,8 @@ include ':hi-ui'
 project(':hi-ui').projectDir = "../hi-ui/hi-ui" as File
 include ':app'
 rootProject.name = "ASProj"
+setBinding(new Binding([gradle: this]))
+evaluate(new File(settingsDir.parentFile,'flutter_module/.android/include_flutter.groovy'))
+/*不导入也可以*/
+include ':flutter_module'
+project(':flutter_module').projectDir=new File('../flutter_module')

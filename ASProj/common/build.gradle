@@ -61,5 +61,5 @@ dependencies {
 
     //arouter
     implementation dependency.arouter_api
-    //api project(':flutter')
+    api project(':flutter')
 }
