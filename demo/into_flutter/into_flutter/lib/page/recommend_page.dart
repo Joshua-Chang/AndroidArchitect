@@ -17,7 +17,7 @@ class RecommendPage extends StatefulWidget {
   _RecommendPageState createState() => _RecommendPageState();
 }
 
-class _RecommendPageState extends BaseState<RecommendPage> {
+class _RecommendPageState extends BaseState<RecommendPage>with AutomaticKeepAliveClientMixin {
   int pageIndex = 1;
   List<GoodsModel> goodsModels;
   bool _isLoading = true;
@@ -89,4 +89,7 @@ class _RecommendPageState extends BaseState<RecommendPage> {
   void dispose() {
     super.dispose();
   }
+
+  @override
+  bool get wantKeepAlive => true;/*切换不回收*/
 }

@@ -4,10 +4,12 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import io.flutter.embedding.android.FlutterTextureView
 import io.flutter.embedding.android.FlutterView
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.dart.DartExecutor
+import io.flutter.plugin.common.MethodChannel
 import kotlinx.android.synthetic.main.fragment_flutter.*
 import org.devio.`as`.proj.common.R
 import org.devio.`as`.proj.common.ui.component.HiBaseFragment
@@ -40,6 +42,20 @@ abstract class HiFlutterFragment : HiBaseFragment() {
 
     fun setTitle(titleStr: String) {
         title.text = titleStr
+        title.setOnClickListener {
+            HiFlutterBridge.instance!!.fire("onRefresh", "so easy", object : MethodChannel.Result {
+                override fun success(result: Any?) {
+                    Toast.makeText(context, result as String?, Toast.LENGTH_SHORT).show()
+                }
+
+                override fun error(errorCode: String?, errorMessage: String?, errorDetails: Any?) {
+                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                }
+
+                override fun notImplemented() {
+                }
+            })
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

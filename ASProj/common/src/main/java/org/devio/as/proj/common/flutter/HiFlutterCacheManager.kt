@@ -35,6 +35,7 @@ class HiFlutterCacheManager private constructor() {
 
     private fun initFlutterEngine(context: Context, moduleName: String): FlutterEngine {
         val flutterEngine = FlutterEngine(context)
+        HiFlutterBridge.init(flutterEngine)
         flutterEngine.dartExecutor.executeDartEntrypoint(
             DartExecutor.DartEntrypoint(
                 FlutterMain.findAppBundlePath(),
