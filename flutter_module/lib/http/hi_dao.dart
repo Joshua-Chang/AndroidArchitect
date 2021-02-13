@@ -1,3 +1,4 @@
+import 'package:flutter_module/http/request/favorite_request.dart';
 import 'package:flutter_module/page/base_page.dart';
 import 'package:flutter_module/http/hi_error.dart';
 import 'package:flutter_module/http/hi_http.dart';
@@ -26,6 +27,12 @@ class HiDao {
       BaseState state, Function(CommonModel) success, Function(HiError) error,
       {int pageIndex = 1, int pageSize = 10, bool needCached = false}) async {
     _send(RecommendRequest(), state, success, error,
+        pageIndex: pageIndex, pageSize: pageIndex, needCached: needCached);
+  }
+  void favorites(
+      BaseState state, Function(CommonModel) success, Function(HiError) error,
+      {int pageIndex = 1, int pageSize = 10, bool needCached = false}) async {
+    _send(FavoriteRequest(), state, success, error,
         pageIndex: pageIndex, pageSize: pageIndex, needCached: needCached);
   }
 

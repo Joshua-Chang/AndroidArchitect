@@ -5,6 +5,8 @@ class HiFlutterBridge {
   MethodChannel _bridge = const MethodChannel("HiFlutterBridge");
   var _listeners = {};
 
+  var header;
+
   HiFlutterBridge._(){
     _bridge.setMethodCallHandler((MethodCall call) {
       String method = call.method;
@@ -30,5 +32,9 @@ class HiFlutterBridge {
   }
   MethodChannel bridge(){
     return _bridge;
+  }
+  Future<Map<String,String>> getHeaderParams()async{
+    Map header = await _bridge.invokeMethod('getHeaderParams',{});
+    return this.header=Map<String,String>.from(header);
   }
 }

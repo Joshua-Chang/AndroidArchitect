@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_module/core/hi_flutter_bridge.dart';
 import 'package:flutter_module/http/hi_error.dart';
 import 'package:flutter_module/http/request/base_request.dart';
 import 'package:http/http.dart' as http;
@@ -34,7 +35,7 @@ class HiHttp {
       // uri = Uri.https(request.url(), request.path());
       uri = Uri.http(request.url(), request.path());
     }
-    var header = getHeaderParams();
+    var header =await HiFlutterBridge.getInstance().getHeaderParams();
     var response, result;
     if (userDio) {
       response =
@@ -64,9 +65,5 @@ class HiHttp {
       throw Exception(
           'statusCode${response.statusCode},message${result.toString()}');
     }
-  }
-
-  getHeaderParams() {
-    return {"auth-token": "MTUdfaklsdfjdf"}; /* :才是map */
   }
 }

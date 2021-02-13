@@ -8,6 +8,7 @@ import android.widget.Toast
 import io.flutter.embedding.android.FlutterTextureView
 import io.flutter.embedding.android.FlutterView
 import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.embedding.engine.FlutterEngineCache
 import io.flutter.embedding.engine.dart.DartExecutor
 import io.flutter.plugin.common.MethodChannel
 import kotlinx.android.synthetic.main.fragment_flutter.*
@@ -24,18 +25,27 @@ import org.devio.`as`.proj.common.utils.AppGlobals
  * @创建人：常守达
  * @备注：
  */
-abstract class HiFlutterFragment : HiBaseFragment() {
+abstract class HiFlutterFragment(moduleName: String) : HiBaseFragment() {
     protected var flutterEngine: FlutterEngine?
     protected var flutterView: FlutterView? = null
-    abstract val moduleName: String?
+    private val cached: Boolean = HiFlutterCacheManager.instance!!.hasCached(moduleName)
 
     init {
         flutterEngine = HiFlutterCacheManager.instance!!.getCachedFlutterEngine(
-            moduleName!!,
+            moduleName,
             AppGlobals.application
         )
     }
-
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        if (!cached) {/*注册flutter/platform_views 使插件能够处理native View*/
+            flutterEngine?.platformViewsController?.attach(
+                activity,
+                flutterEngine!!.renderer,
+                flutterEngine!!.dartExecutor
+            )
+        }
+    }
     override fun getLayoutId(): Int {
         return R.layout.fragment_flutter
     }

@@ -36,6 +36,7 @@ class HiFlutterCacheManager private constructor() {
     private fun initFlutterEngine(context: Context, moduleName: String): FlutterEngine {
         val flutterEngine = FlutterEngine(context)
         HiFlutterBridge.init(flutterEngine)
+        HiImageViewPlugin.registerWith(flutterEngine)
         flutterEngine.dartExecutor.executeDartEntrypoint(
             DartExecutor.DartEntrypoint(
                 FlutterMain.findAppBundlePath(),
@@ -60,5 +61,8 @@ class HiFlutterCacheManager private constructor() {
             flutterEngine=initFlutterEngine(context, moduleName)
         }
         return flutterEngine!! 
+    }
+    fun hasCached(moduleName:String):Boolean{
+        return FlutterEngineCache.getInstance().contains(moduleName)
     }
 }

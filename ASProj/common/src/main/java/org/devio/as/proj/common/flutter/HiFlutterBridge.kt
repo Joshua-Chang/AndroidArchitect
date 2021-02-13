@@ -4,6 +4,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
+import org.devio.`as`.proj.common.info.HiLocalConfig
 
 
 /**
@@ -61,12 +62,19 @@ class HiFlutterBridge : IHiBridge<Any?, MethodChannel.Result?>, MethodChannel.Me
                 val goodsId = p["goodsId"]
                 ARouter.getInstance().build("/detail/main")
                     .withString("goodsId", goodsId as String?).navigation()
+            }else if (action=="goToLogin"){
+                ARouter.getInstance().build("/account/login").navigation()
             }
         }
     }
 
     override fun getHeaderParams(callBack: MethodChannel.Result?) {
-
+        callBack!!.success(
+            mapOf(
+                "boarding-pass" to HiLocalConfig.boardingPass(),
+                "auth-token" to HiLocalConfig.authToken(),
+            )
+        )
     }
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
