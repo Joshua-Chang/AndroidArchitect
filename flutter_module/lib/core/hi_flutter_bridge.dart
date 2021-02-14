@@ -30,6 +30,9 @@ class HiFlutterBridge {
   goToNative(Map params){
     _bridge.invokeListMethod("goToNative",params);
   }
+  onBack(Map params){
+    _bridge.invokeListMethod("onBack",params);
+  }
   MethodChannel bridge(){
     return _bridge;
   }

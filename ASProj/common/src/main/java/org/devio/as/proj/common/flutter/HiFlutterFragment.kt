@@ -51,6 +51,8 @@ abstract class HiFlutterFragment(moduleName: String) : HiBaseFragment() {
     }
 
     fun setTitle(titleStr: String) {
+        rl_title.visibility=View.VISIBLE
+        title_line.visibility=View.VISIBLE
         title.text = titleStr
         title.setOnClickListener {
             HiFlutterBridge.instance!!.fire("onRefresh", "so easy", object : MethodChannel.Result {
@@ -102,5 +104,10 @@ abstract class HiFlutterFragment(moduleName: String) : HiBaseFragment() {
     override fun onDetach() {
         super.onDetach()
         flutterEngine!!.lifecycleChannel.appIsDetached()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        flutterView?.detachFromFlutterEngine()
     }
 }

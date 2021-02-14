@@ -3,7 +3,8 @@
     package="org.devio.as.proj.common">
 
     <application>
-        <activity android:name=".ui.component.HiBaseActivity"></activity>
+        <activity android:name=".flutter.HiFlutterActivity"></activity>
+        <activity android:name=".ui.component.HiBaseActivity" />
     </application>
 
 </manifest>

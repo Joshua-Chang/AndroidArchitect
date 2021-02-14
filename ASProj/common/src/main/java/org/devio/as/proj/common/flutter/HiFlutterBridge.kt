@@ -5,6 +5,7 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import org.devio.`as`.proj.common.info.HiLocalConfig
+import org.devio.hi.library.util.ActivityManager
 
 
 /**
@@ -52,7 +53,9 @@ class HiFlutterBridge : IHiBridge<Any?, MethodChannel.Result?>, MethodChannel.Me
     }
 
     override fun onBack(p: Any?) {
-        TODO("Not yet implemented")
+        if (ActivityManager.instance.getTopActivity(true) is HiFlutterActivity) {
+            (ActivityManager.instance.getTopActivity(true) as HiFlutterActivity).onBackPressed()
+        }
     }
 
     override fun goToNative(p: Any?) {
@@ -62,6 +65,8 @@ class HiFlutterBridge : IHiBridge<Any?, MethodChannel.Result?>, MethodChannel.Me
                 val goodsId = p["goodsId"]
                 ARouter.getInstance().build("/detail/main")
                     .withString("goodsId", goodsId as String?).navigation()
+            }else if (action=="onBack"){
+
             }else if (action=="goToLogin"){
                 ARouter.getInstance().build("/account/login").navigation()
             }

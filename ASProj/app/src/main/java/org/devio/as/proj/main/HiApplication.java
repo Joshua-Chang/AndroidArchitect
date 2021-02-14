@@ -8,18 +8,21 @@ import org.devio.as.proj.common.ui.component.HiBaseApplication;
 import org.devio.hi.library.log.HiConsolePrinter;
 import org.devio.hi.library.log.HiLogConfig;
 import org.devio.hi.library.log.HiLogManager;
+import org.devio.hi.library.util.ActivityManager;
 
 public class HiApplication extends HiBaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        ARouter.init(this);
-        HiFlutterCacheManager.getInstance().preLoad(this);
         HiLogManager.init(new HiLogConfig() {
             @Override
             public JsonParser injectJsonParser() {
                 return src -> new Gson().toJson(src);
             }
         }, new HiConsolePrinter());
+        ActivityManager.getInstance().init(this);
+        ARouter.init(this);
+//        HiFlutterCacheManager.getInstance().preLoad(this);
+        HiFlutterCacheManager.getInstance().preLoadDartVM(this);
     }
 }

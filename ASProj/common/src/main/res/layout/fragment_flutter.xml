@@ -6,6 +6,8 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/rl_title"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_45"
         android:background="@color/color_white"
@@ -22,6 +24,8 @@
     </RelativeLayout>
 
     <View
+        android:id="@+id/title_line"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="2px"
         android:background="@color/color_eee" />

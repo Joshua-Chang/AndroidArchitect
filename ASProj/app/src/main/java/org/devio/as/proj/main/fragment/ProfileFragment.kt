@@ -1,9 +1,7 @@
 package org.devio.`as`.proj.main.fragment
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Typeface
-import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
@@ -16,11 +14,11 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.launcher.ARouter
-import org.devio.`as`.proj.common.ui.component.HiBaseFragment
-import org.devio.`as`.proj.main.R
 import kotlinx.android.synthetic.main.fragment_profile_page.*
+import org.devio.`as`.proj.common.ui.component.HiBaseFragment
 import org.devio.`as`.proj.common.ui.view.loadCircle
 import org.devio.`as`.proj.common.ui.view.loadCorner
+import org.devio.`as`.proj.main.R
 import org.devio.`as`.proj.main.biz.account.AccountManager
 import org.devio.`as`.proj.main.http.ApiFactory
 import org.devio.`as`.proj.main.http.api.AccountApi
@@ -46,6 +44,9 @@ class ProfileFragment : HiBaseFragment() {
 //        item_collection.append(ITEM_PLACE_HOLDER + getString(R.string.item_collection))
         ll_notice.setOnClickListener {
             ARouter.getInstance().build("/notice/list").navigation(context)
+        }
+        item_playground.setOnClickListener {
+            ARouter.getInstance().build("/playground/main").navigation(context)
         }
         queryLoginUserData()
         queryCourseNotice()
