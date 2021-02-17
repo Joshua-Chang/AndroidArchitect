@@ -1,4 +1,4 @@
-package org.devio.`as`.proj.common.flutter
+package org.devio.`as`.proj.common.core
 
 
 /**

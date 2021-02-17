@@ -38,6 +38,7 @@ class HiRNActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
             .setBundleAssetName("index.android.bundle")/*jsBundle*/
             .setJSMainModulePath("index")
             .addPackage(MainReactPackage())/*注册*/
+            .addPackage(HiReactPackage())
             .setUseDeveloperSupport(BuildConfig.DEBUG)
             .setInitialLifecycleState(LifecycleState.RESUMED)
             .build()

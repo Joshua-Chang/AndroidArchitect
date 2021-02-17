@@ -11,7 +11,7 @@ import org.devio.`as`.proj.common.utils.SPUtil
  * @创建人：常守达
  * @备注：
  */
-object HiLocalConfig :LocalConfig{
+class HiLocalConfig :LocalConfig{
     override fun authToken(): String {
         return "dsfasdfasd"
     }
@@ -20,6 +20,17 @@ object HiLocalConfig :LocalConfig{
         return SPUtil.getString("boarding-pass")
     }
 
+    companion object {
+        @get:Synchronized
+        var instance: HiLocalConfig? = null
+            get() {
+                if (field == null) {
+                    field = HiLocalConfig()
+                }
+                return field
+            }
+            private set
+    }
 }
 internal interface LocalConfig{
     fun authToken():String

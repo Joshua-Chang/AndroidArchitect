@@ -4,6 +4,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
+import org.devio.`as`.proj.common.core.IHiBridge
 import org.devio.`as`.proj.common.info.HiLocalConfig
 import org.devio.hi.library.util.ActivityManager
 
@@ -76,8 +77,8 @@ class HiFlutterBridge : IHiBridge<Any?, MethodChannel.Result?>, MethodChannel.Me
     override fun getHeaderParams(callBack: MethodChannel.Result?) {
         callBack!!.success(
             mapOf(
-                "boarding-pass" to HiLocalConfig.boardingPass(),
-                "auth-token" to HiLocalConfig.authToken(),
+                "boarding-pass" to HiLocalConfig.instance!!.boardingPass(),
+                "auth-token" to HiLocalConfig.instance!!.authToken(),
             )
         )
     }
