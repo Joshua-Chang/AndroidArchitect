@@ -5,6 +5,8 @@ import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import kotlinx.android.synthetic.main.activity_playground.*
+import org.devio.`as`.proj.common.rn.HiRNActivity
+import org.devio.`as`.proj.common.rn.HiRNCacheManager
 import org.devio.hi.library.util.HiStatusBar
 
 @Route(path = "/playground/main")
@@ -27,6 +29,7 @@ class PlaygroundActivity : AppCompatActivity() {
         }
         go_rn.setOnClickListener {
             ARouter.getInstance().build("/rn/main")
+                .withString(HiRNActivity.HI_RN_BUNDLE, HiRNCacheManager.MODULE_NAME_BRIDGE_DEMO)
                 .navigation()
         }
     }

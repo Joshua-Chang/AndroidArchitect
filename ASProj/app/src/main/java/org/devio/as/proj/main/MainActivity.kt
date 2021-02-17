@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import androidx.fragment.app.DialogFragment
 import com.google.gson.JsonObject
+import org.devio.`as`.proj.common.rn.HiRNCacheManager
 import org.devio.`as`.proj.common.ui.component.HiBaseActivity
 import org.devio.`as`.proj.main.biz.LoginActivity
 import org.devio.`as`.proj.main.http.ApiFactory
@@ -24,6 +25,13 @@ class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
         activityLogic= MainActivityLogic(this, savedInstanceState)
         HiStatusBar.setStatusBar(this,true,Color.WHITE,false)
         HiDataBus.with<String>("stickyData").setStickyData("stickyData from mainActivity")
+        preLoadRN()
+    }
+
+    private fun preLoadRN() {/*在原生界面 预见去加载哪个RN界面*/
+        val bundle = Bundle()
+        bundle.putString("routeTo","/browsing")
+        HiRNCacheManager.instance?.preLoad(this,HiRNCacheManager.MODULE_NAME_BROWSING,bundle)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

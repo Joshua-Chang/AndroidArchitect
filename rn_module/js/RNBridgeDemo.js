@@ -1,24 +1,26 @@
 import React, {Component} from 'react';
 import {Text, View, Button} from 'react-native';
 import HiRNBridge from './lib/HiRNBridge'
+import HiRNImageView from '../js/lib/HiRNImageView'
 
 class RNBridgeDemo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            header: ''
+            header: '',
+            message:''
         }
     }
 
     async getHeader() {
-        let headers = await HiRNBridge.getHeaderParams();
+        let header = await HiRNBridge.getHeaderParams();
         this.setState({
             header
         })
     }
 
     render() {
-        const {header} = this.state;
+        const {header,message} = this.state;
         return (
             <View>
                 <Button title={'onBack'} onPress={() => {
@@ -31,6 +33,17 @@ class RNBridgeDemo extends Component {
                     this.getHeader();
                 }}/>
                 <Text>获取的:{JSON.stringify(header)}</Text>
+                <HiRNImageView style={{width: 200, height: 200}}
+                               src={'https://www.devio.org/img/beauty_camera/beauty_camera1.jpg'}
+                               onPress={(e) => {
+                                   this.setState(
+                                       {
+                                           message: e
+                                       }
+                                   )
+                               }}
+                />
+                <Text>收到：{message}</Text>
             </View>
         );
     }

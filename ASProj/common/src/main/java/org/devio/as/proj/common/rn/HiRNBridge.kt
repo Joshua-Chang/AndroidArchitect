@@ -20,7 +20,7 @@ class HiRNBridge(reactContext: ReactApplicationContext?) :
         return "HiRNBridge"
     }
 
-    @ReactMethod/*暴露给RN*/
+    @ReactMethod/*暴露给RN的方法，名称必须对应*/
     override fun onBack(p: ReadableMap?) {
         currentActivity?.run {
             runOnUiThread {
