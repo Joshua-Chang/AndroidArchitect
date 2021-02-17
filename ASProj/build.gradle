@@ -20,6 +20,17 @@ allprojects {
     repositories {
         google()
         jcenter()
+
+        //rn
+        maven {
+            // All of React Native (JS, Android binaries) is installed from npm
+            url "$rootDir/../rn_module/node_modules/react-native/android"
+        }
+        maven {
+            // Android JSC is installed from npm
+            url("$rootDir/../rn_module/node_modules/jsc-android/dist")
+        }
+        //rn end
     }
 }
 

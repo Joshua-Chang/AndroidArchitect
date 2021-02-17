@@ -25,6 +25,12 @@ android {
                 arguments += [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+        //开启拆分包
+        multiDexEnabled true
+        //配置支持的动态库类型
+        ndk {
+            abiFilters 'armeabi-v7a', 'x86','x86_64'
+        }
     }
 
     buildTypes {

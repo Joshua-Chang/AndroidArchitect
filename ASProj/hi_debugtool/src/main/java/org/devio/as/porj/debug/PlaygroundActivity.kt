@@ -25,5 +25,9 @@ class PlaygroundActivity : AppCompatActivity() {
                 .navigation()
 
         }
+        go_rn.setOnClickListener {
+            ARouter.getInstance().build("/rn/main")
+                .navigation()
+        }
     }
 }

@@ -42,4 +42,13 @@
         android:id="@+id/native_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/go_rn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/color_298"
+        android:text="React Native组件"
+        android:textColor="@color/color_white" />
 </LinearLayout>

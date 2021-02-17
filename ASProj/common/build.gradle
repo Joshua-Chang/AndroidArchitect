@@ -4,8 +4,8 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
 }
-def ext =rootProject.ext
-def dependency =rootProject.ext.dependencies
+def ext = rootProject.ext
+def dependency = rootProject.ext.dependencies
 android {
     compileSdkVersion 30
     buildToolsVersion '29.0.3'
@@ -43,6 +43,23 @@ android {
     }
 }
 
+project.ext.react = [
+        entryFile    : "index.android.js",
+        enableHermes : false,
+        bundleInAlpha: true,
+        bundleInDebug: true,
+        bundleInBate : true
+]
+//rn
+
+def enableHermes = project.ext.react.get("enableHermes", false);
+def jscFlavor = 'org.webkit:android-jsc:+'
+
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+//rn end
+
 dependencies {
 
     api project(path: ':hi-library')
@@ -70,4 +87,16 @@ dependencies {
     kapt dependency.arouter_compiler
 
     api project(':flutter')
+
+    //rn
+    if (enableHermes) {
+        def hermesPath = "../../rn_module/node_modules/hermesvm/android/";
+        debugImplementation files(hermesPath + "hermes-debug.aar")
+        releaseImplementation files(hermesPath + "hermes-release.aar")
+    } else {
+        implementation jscFlavor
+    }
+    implementation "com.facebook.react:react-native:+" // From node_modules
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    //rn end
 }
