@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--data/data/0/orgxxx/cache/java_crash/111.txt-->
+    <!--FileProvier 转译为标准的URIl格式 来表示路径-->
+    <!--schema://host/path-->
+    <!--content://${applicationId}.fileProvider/-->
+    <!--content://orgxxx/cache-path/java_crash/111.txt-->
+
+    <!--将data/data/包名 下边的cache files等文件夹转换-->
+    <cache-path
+        name="cache-path"
+        path="." />
+    <external-path
+        name="external-path"
+        path="." />
+    <files-path
+        name="files-path"
+        path="." />
+    <external-cache-path
+        name="external-cache-path"
+        path="."/>
+</paths>

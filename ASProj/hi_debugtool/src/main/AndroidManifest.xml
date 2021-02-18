@@ -4,6 +4,7 @@
 
     <application>
         <activity android:name=".PlaygroundActivity"></activity>
+        <activity android:name=".CrashLogActivity" />
     </application>
 
 </manifest>

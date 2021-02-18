@@ -5,10 +5,12 @@ import com.google.gson.Gson;
 
 import org.devio.as.proj.common.flutter.HiFlutterCacheManager;
 import org.devio.as.proj.common.ui.component.HiBaseApplication;
+import org.devio.hi.library.crash.CrashMgr;
 import org.devio.hi.library.log.HiConsolePrinter;
 import org.devio.hi.library.log.HiLogConfig;
 import org.devio.hi.library.log.HiLogManager;
 import org.devio.hi.library.util.ActivityManager;
+import org.devio.hi.library.crash.CrashHandler;
 
 public class HiApplication extends HiBaseApplication {
     @Override
@@ -24,5 +26,6 @@ public class HiApplication extends HiBaseApplication {
         ARouter.init(this);
 //        HiFlutterCacheManager.getInstance().preLoad(this);
         HiFlutterCacheManager.getInstance().preLoadDartVM(this);
+        CrashMgr.INSTANCE.init();
     }
 }

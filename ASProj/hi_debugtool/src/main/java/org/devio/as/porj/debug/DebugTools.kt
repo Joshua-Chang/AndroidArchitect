@@ -37,4 +37,11 @@ class DebugTools {
         //杀掉当前进程,并主动启动新的 启动页，以完成重启的动作
         Process.killProcess(Process.myPid())
     }
+    @HiDebug(name = "查看Crash日志", desc = "可一键分享")
+    fun crashLog(){
+        val context = AppGlobals.get()?.applicationContext ?: return
+        val intent = Intent(context, CrashLogActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(intent)
+    }
 }
