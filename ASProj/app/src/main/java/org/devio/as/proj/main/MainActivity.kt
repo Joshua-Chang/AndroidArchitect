@@ -20,6 +20,7 @@ import org.devio.hi.library.util.HiStatusBar
 class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
     private var activityLogic : MainActivityLogic? =null
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_ASProj)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         activityLogic= MainActivityLogic(this, savedInstanceState)

@@ -19,8 +19,8 @@
         android:networkSecurityConfig="@xml/network_sercurity_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ASProj">
-        <activity android:name=".biz.notice.NoticeListActivity"></activity>
+        android:theme="@style/LaunchTheme">
+        <activity android:name=".biz.notice.NoticeListActivity" />
         <activity android:name=".biz.goods.GoodsListActivity" />
         <activity android:name=".fragment.detail.DetailActivity" />
         <activity android:name=".DegradeGlobalActivity" />
