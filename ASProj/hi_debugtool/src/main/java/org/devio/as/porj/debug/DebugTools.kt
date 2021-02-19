@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Process
 import org.devio.`as`.proj.common.utils.SPUtil
+import org.devio.hi.library.fps.FpsMonitor
 import org.devio.hi.library.util.AppGlobals
 
 class DebugTools {
@@ -43,5 +44,9 @@ class DebugTools {
         val intent = Intent(context, CrashLogActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
+    }
+    @HiDebug(name = "FPS","实时FPS")
+    fun toggleFps(){
+        FpsMonitor.toggle()
     }
 }
