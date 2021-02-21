@@ -60,6 +60,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation project(':hi-library')
     implementation project(':common')
+    implementation project(':hi-ability')
     implementation dependency.arouter_api
     kapt dependency.arouter_compiler
 }

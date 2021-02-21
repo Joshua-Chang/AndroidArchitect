@@ -75,7 +75,7 @@ dependencies {
     api dependency.fragment_ktx
 
     //glide图片
-    implementation dependency.glide
+    api dependency.glide
     kapt dependency.glide_compiler
 
     //http

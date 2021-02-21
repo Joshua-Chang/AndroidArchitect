@@ -29,7 +29,7 @@ android {
         multiDexEnabled true
         //配置支持的动态库类型
         ndk {
-            abiFilters 'armeabi-v7a', 'x86','x86_64'
+            abiFilters 'armeabi-v7a', 'x86', 'x86_64'
         }
     }
 
@@ -75,4 +75,5 @@ dependencies {
     kapt dependency.arouter_compiler
     debugImplementation project(':hi_debugtool')
     implementation project(':flutter')
+    implementation project('path': ':hi-ability')
 }

@@ -3,6 +3,7 @@ package org.devio.as.proj.main;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.gson.Gson;
 
+import org.devio.as.proj.ability.HiAbility;
 import org.devio.as.proj.common.flutter.HiFlutterCacheManager;
 import org.devio.as.proj.common.ui.component.HiBaseApplication;
 import org.devio.hi.library.crash.CrashMgr;
@@ -27,5 +28,6 @@ public class HiApplication extends HiBaseApplication {
 //        HiFlutterCacheManager.getInstance().preLoad(this);
         HiFlutterCacheManager.getInstance().preLoadDartVM(this);
         CrashMgr.INSTANCE.init();
+        HiAbility.INSTANCE.init(this,"Umeng",null);
     }
 }

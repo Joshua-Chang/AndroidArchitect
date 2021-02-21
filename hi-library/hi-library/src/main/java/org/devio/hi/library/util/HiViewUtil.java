@@ -45,7 +45,7 @@ public class HiViewUtil{
 
         return true;
     }
-    private static Activity findActivity(Context context) {
+    public static Activity findActivity(Context context) {
         //怎么判断context 是不是activity 类型的
         if (context instanceof Activity) return (Activity) context;
         /*ContextWrapper context的子类包装类，包装作用，子类有TintContextWrapper，用于appcompat控件加载不同的resource*/
