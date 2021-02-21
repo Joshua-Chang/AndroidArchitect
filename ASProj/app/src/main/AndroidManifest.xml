@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.devio.as.proj.main">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,15 +17,22 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:maxAspectRatio="2.4"
+        android:minAspectRatio="1"
         android:networkSecurityConfig="@xml/network_sercurity_config"
+        android:resizeableActivity="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/LaunchTheme">
+        android:theme="@style/LaunchTheme"
+        tools:targetApi="q">
         <activity android:name=".biz.notice.NoticeListActivity" />
         <activity android:name=".biz.goods.GoodsListActivity" />
         <activity android:name=".fragment.detail.DetailActivity" />
         <activity android:name=".DegradeGlobalActivity" />
-        <activity android:name=".MainActivity">
+        <!--configChanges 屏幕切换不重新走生命周期，而是走activity/fragment 的onConfigurationChanged-->
+        <activity
+            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
+            android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,7 +49,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_path"></meta-data>
+                android:resource="@xml/file_path" />
         </provider>
     </application>
 

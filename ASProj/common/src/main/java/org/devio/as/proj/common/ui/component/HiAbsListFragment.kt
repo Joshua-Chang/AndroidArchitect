@@ -24,7 +24,7 @@ open class HiAbsListFragment : HiBaseFragment(), HiRefresh.OnRefreshListener {
     private lateinit var refreshHeaderView: HiTextOverView
     private var loadingView: ContentLoadingProgressBar? = null
     private var emptyView: EmptyView? = null
-    private var recyclerView: HiRecyclerView? = null
+    protected var recyclerView: HiRecyclerView? = null
     private var refreshLayout: HiRefreshLayout? = null
 
     companion object {

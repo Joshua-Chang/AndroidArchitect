@@ -189,4 +189,16 @@ public class HiTabBottomLayout extends FrameLayout implements IHiTabLayout<HiTab
             targetView.setClipToPadding(false);
         }
     }
+    public void resizeHiTabBottomLayout() {
+        int width = HiDisplayUtil.getDisplayWidthInPx(getContext()) / infoList.size();
+        ViewGroup frameLayout = (ViewGroup) getChildAt(getChildCount() - 1);
+        int childCount = frameLayout.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View button = frameLayout.getChildAt(i);
+            FrameLayout.LayoutParams params = (LayoutParams) button.getLayoutParams();
+            params.width = width;
+            params.leftMargin = i * width;
+            button.setLayoutParams(params);
+        }
+    }
 }

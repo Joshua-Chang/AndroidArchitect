@@ -1,6 +1,7 @@
 package org.devio.`as`.proj.main
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.view.KeyEvent
@@ -16,6 +17,7 @@ import org.devio.hi.library.restful.HiCallback
 import org.devio.hi.library.restful.HiResponse
 import org.devio.hi.library.util.HiDataBus
 import org.devio.hi.library.util.HiStatusBar
+import org.devio.hi.library.util.HiViewUtil
 
 class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
     private var activityLogic : MainActivityLogic? =null
@@ -57,5 +59,20 @@ class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
             }
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        /*折叠屏底部按钮宽度*/
+        activityLogic?.hiTabBottomLayout?.resizeHiTabBottomLayout()
+
+
+        /*浅深色主题 manifest 内设置UImode*/
+        /*.getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK*/
+        if (HiViewUtil.lightMode()) {
+            recreate()
+        }else{
+            recreate()
+        }
     }
 }

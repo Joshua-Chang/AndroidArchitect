@@ -53,4 +53,13 @@ class BannerItem(val list: List<HomeBanner>) : HiDataItem<List<HomeBanner>, Recy
         banner.setBackgroundColor(Color.WHITE)
         return banner
     }
+
+    override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
+        /*折叠屏banner高度*/
+        super.onViewAttachedToWindow(holder)
+        val itemView = holder.itemView
+        val layoutParams = itemView.layoutParams
+        layoutParams.height= (HiDisplayUtil.getDisplayWidthInPx(itemView.context)/2.6).toInt()
+        itemView.layoutParams=layoutParams
+    }
 }

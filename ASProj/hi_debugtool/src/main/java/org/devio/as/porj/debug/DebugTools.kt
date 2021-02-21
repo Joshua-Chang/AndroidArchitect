@@ -3,9 +3,11 @@ package org.devio.`as`.porj.debug
 import android.content.Intent
 import android.os.Build
 import android.os.Process
+import androidx.appcompat.app.AppCompatDelegate
 import org.devio.`as`.proj.common.utils.SPUtil
 import org.devio.hi.library.fps.FpsMonitor
 import org.devio.hi.library.util.AppGlobals
+import org.devio.hi.library.util.HiViewUtil
 
 class DebugTools {
     fun buildVersion(): String {
@@ -48,5 +50,13 @@ class DebugTools {
     @HiDebug(name = "FPS","实时FPS")
     fun toggleFps(){
         FpsMonitor.toggle()
+    }
+    @HiDebug(name = "暗黑模式","")
+    fun toggleTheme(){
+        if (HiViewUtil.lightMode()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 }

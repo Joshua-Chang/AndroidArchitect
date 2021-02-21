@@ -1,11 +1,13 @@
 package org.devio.`as`.proj.main.fragment.home
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.devio.`as`.proj.common.ui.component.HiAbsListFragment
 import org.devio.`as`.proj.main.http.ApiFactory
@@ -14,6 +16,7 @@ import org.devio.`as`.proj.main.model.HomeModel
 import org.devio.hi.library.restful.HiCallback
 import org.devio.hi.library.restful.HiResponse
 import org.devio.hi.library.restful.annotation.CacheStrategy
+import org.devio.hi.library.util.FoldableDeviceUtil
 import org.devio.hi.ui.item.HiDataItem
 
 class HomeTabFragment : HiAbsListFragment() {
@@ -97,5 +100,21 @@ class HomeTabFragment : HiAbsListFragment() {
     override fun onRefresh() {
         super.onRefresh()
         queryTabCategoryList(CacheStrategy.NET_CACHE)
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        /*折叠屏展开时为grid*/
+        if (FoldableDeviceUtil.isFold()) {
+            recyclerView?.layoutManager=LinearLayoutManager(context)
+        }else{
+            val manager = GridLayoutManager(context, 2)
+            manager.spanSizeLookup=object :GridLayoutManager.SpanSizeLookup(){
+                override fun getSpanSize(position: Int): Int {
+                    return if (position<=1)2 else 1
+                }
+            }
+            recyclerView?.layoutManager= manager
+        }
     }
 }

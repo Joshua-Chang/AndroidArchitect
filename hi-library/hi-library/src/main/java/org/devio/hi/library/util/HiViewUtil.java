@@ -3,6 +3,7 @@ package org.devio.hi.library.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,5 +56,10 @@ public class HiViewUtil{
             return findActivity(((ContextWrapper) context).getBaseContext());
         }
         return null;
+    }
+    //检测是否是浅色主题
+    public static boolean lightMode() {
+        int mode = AppGlobals.INSTANCE.get().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        return mode == Configuration.UI_MODE_NIGHT_NO;
     }
 }

@@ -1,5 +1,6 @@
 package org.devio.`as`.proj.main.fragment.category
 
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
@@ -196,5 +197,10 @@ class CategoryFragment : HiBaseFragment() {
 
         slider_view.visibility = View.GONE
         emptyView?.visibility = View.VISIBLE
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        slider_view.contentView.adapter?.notifyDataSetChanged()
     }
 }
