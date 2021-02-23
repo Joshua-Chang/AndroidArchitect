@@ -3,10 +3,9 @@ package org.devio.`as`.proj.ability.push
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import androidx.annotation.RequiresApi
+import com.umeng.analytics.MobclickAgent
 import com.umeng.commonsdk.UMConfigure
 import com.umeng.message.IUmengRegisterCallback
 import com.umeng.message.PushAgent
@@ -21,14 +20,6 @@ import org.devio.`as`.proj.ability.BuildConfig
 import org.json.JSONObject
 
 
-/**
- * @版本号：
- * @需求编号：
- * @功能描述：
- * @创建时间：2021/2/21 10:20 PM
- * @创建人：常守达
- * @备注：
- */
 object PushInitialization {
     const val TAG = "PushInitialization"
     private var iPushMessageHandler: IPushMessageHandler? = null
@@ -58,6 +49,7 @@ object PushInitialization {
 
         OppoRegister.register(application, BuildConfig.OPPO_API_KEY, BuildConfig.OPPO_API_SECRET)
         VivoRegister.register(application)
+
     }
 
     private fun initUmengPushSdk(
@@ -78,6 +70,7 @@ object PushInitialization {
             UMConfigure.DEVICE_TYPE_PHONE,
             BuildConfig.UMENG_MESSAGE_SECRET
         )
+
         //获取消息推送代理示例
         val mPushAgent = PushAgent.getInstance(application)
         //注册推送服务，每次调用register方法都会回调该接口
@@ -124,13 +117,13 @@ object PushInitialization {
         }
 
         application.registerActivityLifecycleCallbacks(object : SimpleLifecycleCallbacks() {
-            @RequiresApi(Build.VERSION_CODES.Q)
             override fun onActivityPreCreated(activity: Activity, savedInstanceState: Bundle?) {
                 super.onActivityPreCreated(activity, savedInstanceState)
                 PushAgent.getInstance(activity.application).onAppStart();
             }
         })
     }
+
     fun onOEMPush(message: String) {
         iPushMessageHandler?.dealWithCustomMessage(null, JSONObject(message))
     }

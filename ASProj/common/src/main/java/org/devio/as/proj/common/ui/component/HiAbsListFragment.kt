@@ -17,7 +17,7 @@ import org.devio.hi.ui.item.HiDataItem
 import org.devio.hi.ui.refresh.HiOverViewState
 import org.devio.hi.ui.refresh.HiRefresh
 
-open class HiAbsListFragment : HiBaseFragment(), HiRefresh.OnRefreshListener {
+open abstract class HiAbsListFragment : HiBaseFragment(), HiRefresh.OnRefreshListener {
     var pageIndex: Int = 1
     private lateinit var hiAdapter: HiAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager

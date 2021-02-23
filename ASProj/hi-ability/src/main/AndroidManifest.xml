@@ -4,6 +4,7 @@
 
     <!-- 以下为需要的基本权限，需要自行添加至您的AndroidManifest文件中 start-->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -23,8 +24,7 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <application tools:overrideLibrary="com.huawei.hms.scankit"
-        >
+    <application tools:overrideLibrary="com.huawei.hms.scankit">
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -217,9 +217,9 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!--        QQShare  end-->
 
-<!--        <activity-->
-<!--            android:name=".scan.ScanActivity"-->
-<!--            android:screenOrientation="portrait" />-->
+        <activity
+            android:name=".scan.ScanActivity"
+            android:screenOrientation="portrait" />
 
 
     </application>

@@ -44,4 +44,7 @@ class TestFragment : HiBaseFragment() {
         categoryId = arguments?.getString("categoryId", "0")
         layoutView.findViewById<TextView>(R.id.tv_name).setText(categoryId)
     }
+    override fun getPageName(): String {
+        return "TestFragment"
+    }
 }

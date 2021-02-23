@@ -44,6 +44,10 @@ class CategoryFragment : HiBaseFragment() {
         queryCategoryList()
     }
 
+    override fun getPageName(): String {
+        return "CategoryFragment"
+    }
+
     private fun queryCategoryList() {
         ApiFactory.create(CategoryApi::class.java).queryCategoryList()
             .enqueue(object : HiCallback<List<TabCategory>> {
@@ -78,7 +82,7 @@ class CategoryFragment : HiBaseFragment() {
                 val categoryId = category.categoryId
                 if (subcategoryListCache.containsKey(categoryId)) {
                     onQuerySubcategoryListSuccess(subcategoryListCache[categoryId]!!)
-                }else{
+                } else {
                     querySubcategoryList(categoryId)
                 }
             })
@@ -90,8 +94,8 @@ class CategoryFragment : HiBaseFragment() {
                 override fun onSuccess(response: HiResponse<List<Subcategory>>) {
                     if (response.successful() && response.data != null) {
                         onQuerySubcategoryListSuccess(response.data!!)
-                        if (!subcategoryListCache.containsKey(categoryId)){
-                            subcategoryListCache[categoryId]=response.data!!
+                        if (!subcategoryListCache.containsKey(categoryId)) {
+                            subcategoryListCache[categoryId] = response.data!!
                         }
                     }
                 }
@@ -145,7 +149,7 @@ class CategoryFragment : HiBaseFragment() {
     }
 
     private fun onQuerySubcategoryListSuccess(data: List<Subcategory>) {
-        if (!isAlive)return
+        if (!isAlive) return
         decoration.clear()
         groupSpanSizeOffset.clear()
         subcategoryList.clear()

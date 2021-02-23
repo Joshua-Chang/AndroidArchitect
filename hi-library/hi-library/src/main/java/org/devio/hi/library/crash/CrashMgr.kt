@@ -1,6 +1,6 @@
 package org.devio.hi.library.crash
 
-import org.devio.`as`.proj.libbreakpad.NativeCrashHandler
+//import org.devio.`as`.proj.libbreakpad.NativeCrashHandler
 import org.devio.hi.library.util.AppGlobals
 import java.io.File
 
@@ -20,7 +20,7 @@ object CrashMgr {
         val javaCrashDir = getJavaCrashDir()
         val nativeCrashFile = getNativeCrashDir()
         CrashHandler.init(javaCrashDir.absolutePath)
-        NativeCrashHandler.init(nativeCrashFile.absolutePath)
+//        NativeCrashHandler.init(nativeCrashFile.absolutePath)
     }
 
     private fun getJavaCrashDir(): File {

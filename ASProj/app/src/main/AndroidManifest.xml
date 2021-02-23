@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
+        tools:overrideLibrary="com.huawei.hms.scankit"
         android:name=".HiApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

@@ -10,4 +10,7 @@ class FavoriteFragment : HiFlutterFragment(HiFlutterCacheManager.MODULE_NAME_FAV
         super.onViewCreated(view, savedInstanceState)
         setTitle("收藏")
     }
+    override fun getPageName(): String {
+        return "FavoriteFragment"
+    }
 }

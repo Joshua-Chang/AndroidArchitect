@@ -46,6 +46,9 @@ abstract class HiFlutterFragment(moduleName: String) : HiBaseFragment() {
             )
         }
     }
+    override fun getPageName(): String {
+        return "HiFlutterFragment"
+    }
     override fun getLayoutId(): Int {
         return R.layout.fragment_flutter
     }

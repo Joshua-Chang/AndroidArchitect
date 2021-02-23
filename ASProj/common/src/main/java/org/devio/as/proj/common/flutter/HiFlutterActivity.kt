@@ -28,10 +28,15 @@ class HiFlutterActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(R.id.root_view, flutterFragment!!).commit()
     }
 
+
+
     class MFlutterFragment(private val moduleName: String) : HiFlutterFragment(moduleName) {
         override fun onDestroy() {
             super.onDestroy()
             HiFlutterCacheManager.instance?.destroyCached(moduleName)
+        }
+        override fun getPageName(): String {
+            return "HiFlutterActivity"
         }
     }
 }

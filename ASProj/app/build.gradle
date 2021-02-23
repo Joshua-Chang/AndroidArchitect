@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'com.huawei.agconnect'
 }
 def ext = rootProject.ext
 def dependency = rootProject.ext.dependencies
@@ -13,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "org.devio.as.proj.main"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"

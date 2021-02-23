@@ -40,6 +40,9 @@ class ProfileFragment : HiBaseFragment() {
     override fun getLayoutId(): Int {
         return R.layout.fragment_profile_page
     }
+    override fun getPageName(): String {
+        return "ProfileFragment"
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 

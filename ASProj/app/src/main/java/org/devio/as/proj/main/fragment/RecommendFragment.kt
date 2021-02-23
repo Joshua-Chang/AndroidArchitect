@@ -11,4 +11,7 @@ class RecommendFragment : HiFlutterFragment(HiFlutterCacheManager.MODULE_NAME_RE
         super.onViewCreated(view, savedInstanceState)
         setTitle("推荐")
     }
+    override fun getPageName(): String {
+        return "RecommendFragment"
+    }
 }

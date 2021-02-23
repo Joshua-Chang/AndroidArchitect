@@ -34,7 +34,9 @@ class HomeTabFragment : HiAbsListFragment() {
             return fragment
         }
     }
-
+    override fun getPageName(): String {
+        return "HomeTabFragment"
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         categoryId = arguments?.getString("categoryId", DEFAULT_HOT_TAB_CATEGORY_ID)
         super.onViewCreated(view, savedInstanceState)
