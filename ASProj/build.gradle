@@ -5,11 +5,15 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven { url 'https://dl.bintray.com/umsdk/release' }
+        maven {url 'https://developer.huawei.com/repo/'}
+
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.1.1"
+        classpath 'com.android.tools.build:gradle:4.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.alibaba:arouter-register:1.0.2"
+        classpath 'com.huawei.agconnect:agcp:1.4.1.300'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -20,6 +24,21 @@ allprojects {
     repositories {
         google()
         jcenter()
+
+        //rn
+        maven {
+            // All of React Native (JS, Android binaries) is installed from npm
+            url "$rootDir/../rn_module/node_modules/react-native/android"
+        }
+        maven {
+            // Android JSC is installed from npm
+            url("$rootDir/../rn_module/node_modules/jsc-android/dist")
+        }
+        //rn end
+        maven { url 'https://dl.bintray.com/umsdk/release' }
+        mavenCentral()
+        maven { url 'https://dl.bintray.com/umsdk/release' }
+        maven {url 'https://developer.huawei.com/repo/'}
     }
 }
 

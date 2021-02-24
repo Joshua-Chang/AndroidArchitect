@@ -7,18 +7,17 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.devio.`as`.proj.ability.HiAbility
 import org.devio.`as`.proj.common.ui.component.HiBaseFragment
 import org.devio.`as`.proj.main.R
 import org.devio.`as`.proj.main.fragment.home.HomeTabFragment
-import org.devio.`as`.proj.main.http.ApiFactory
-import org.devio.`as`.proj.main.http.api.HomeApi
+import org.devio.`as`.proj.main.fragment.home.HomeViewModel
 import org.devio.`as`.proj.main.model.TabCategory
-import org.devio.hi.library.log.HiLog
-import org.devio.hi.library.restful.HiCallback
-import org.devio.hi.library.restful.HiResponse
 import org.devio.hi.ui.tab.bottom.HiTabBottomLayout
 import org.devio.hi.ui.tab.common.IHiTabLayout
 import org.devio.hi.ui.tab.top.HiTabTopInfo
@@ -31,24 +30,15 @@ class HomePageFragment : HiBaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         HiTabBottomLayout.clipBottomPadding(view_pager)
-        queryTabList()
+//        queryTabList()
+        val viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel.queryCategoryTab().observe(viewLifecycleOwner, Observer {
+            it?.let { updateUI(it) }
+        })
     }
 
-    private fun queryTabList() {
-        ApiFactory.create(HomeApi::class.java).queryTabList()
-            .enqueue(object : HiCallback<List<TabCategory>> {
-                override fun onSuccess(response: HiResponse<List<TabCategory>>) {
-                    val data = response.data
-                    if (response.successful() && data != null) {
-                        /**/
-                        updateUI(data!!)
-                    }
-                }
-
-                override fun onFailed(throwable: Throwable) {
-                    throwable.printStackTrace()
-                }
-            })
+    override fun getPageName(): String {
+        return "HomePageFragment"
     }
 
     private val topTabs = mutableListOf<HiTabTopInfo<Int>>()
@@ -58,6 +48,10 @@ class HomePageFragment : HiBaseFragment() {
         IHiTabLayout.OnTabSelectedListener<HiTabTopInfo<*>> { index, lastSelectedInfo, selectedInfo ->
             if (view_pager.currentItem != index) {
                 view_pager.setCurrentItem(index, false)
+                HiAbility.traceEvent(
+                    "home_page_top_tab_switch",
+                    mapOf<String, Any>(Pair("current_index", index))
+                )
             }
         }
 
@@ -77,7 +71,7 @@ class HomePageFragment : HiBaseFragment() {
         topTabLayout.inflateInfo(topTabs as List<HiTabTopInfo<*>>)
         topTabLayout.defaultSelected(topTabs[DEFAULT_SELECT_INDEX])
         topTabLayout.addTabSelectedChangeListener(onTabSelectedListener)/*改造否则缓存和网络一共调两侧*/
-        if (view_pager.adapter==null) {
+        if (view_pager.adapter == null) {
             view_pager.adapter = HomePagerAdapter(
                 childFragmentManager/**/,
                 FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
@@ -97,12 +91,15 @@ class HomePageFragment : HiBaseFragment() {
 
     inner class HomePagerAdapter(fm: FragmentManager, behavior: Int) :
         FragmentPagerAdapter(fm, behavior) {
-        val tabs= mutableListOf<TabCategory>()
+        val tabs = mutableListOf<TabCategory>()
         private val fragments = SparseArray<Fragment>(tabs.size)
         override fun getItem(position: Int): Fragment {
             val categoryId = tabs[position].categoryId
             val categoryIdKey = categoryId.toInt()
-            var fragment = fragments.get(categoryIdKey, null)/*根据position来复用不合理，position0 缓存中是热门，请求后position0 变为最新*/
+            var fragment = fragments.get(
+                categoryIdKey,
+                null
+            )/*根据position来复用不合理，position0 缓存中是热门，请求后position0 变为最新*/
             if (fragment == null) {
                 fragment = HomeTabFragment.newInstance(tabs[position].categoryId)
                 fragments.put(categoryIdKey, fragment)
@@ -121,8 +118,9 @@ class HomePageFragment : HiBaseFragment() {
             val indexOfValue = fragments.indexOfValue(`object` as Fragment)
             val fragment = getItem(indexOfValue)/*刷新前的*fragment对象*/
 
-            return if (fragment==`object`)PagerAdapter.POSITION_UNCHANGED else PagerAdapter.POSITION_NONE
+            return if (fragment == `object`) PagerAdapter.POSITION_UNCHANGED else PagerAdapter.POSITION_NONE
         }
+
         /*位置对应的item，若会发生变化，都应该复写。默认返回position*/
         override fun getItemId(position: Int): Long {
             return tabs[position].categoryId.toLong()
@@ -131,7 +129,8 @@ class HomePageFragment : HiBaseFragment() {
         override fun getCount(): Int {
             return tabs.size
         }
-        fun update(list: List<TabCategory>){
+
+        fun update(list: List<TabCategory>) {
             tabs.clear()
             tabs.addAll(list)
             notifyDataSetChanged()

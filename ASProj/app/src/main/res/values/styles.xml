@@ -41,4 +41,8 @@
         <item name="hintColor">@color/color_666</item>
         <item name="textSize">15sp</item>
     </style>
+    <style name="LaunchTheme" parent="Theme.ASProj">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/launch_splash</item>
+    </style>
 </resources>

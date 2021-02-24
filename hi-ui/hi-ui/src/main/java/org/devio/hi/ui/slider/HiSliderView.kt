@@ -151,22 +151,6 @@ class HiSliderView @JvmOverloads constructor(
         private var count: Int = 0
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HiViewHolder {
             val itemView = LayoutInflater.from(context).inflate(layoutRes, parent, false)
-            //Content宽度
-            val remainSpace=width-paddingLeft-paddingRight-menuItemAttr.width
-            val layoutManager=(parent as RecyclerView).layoutManager
-            var spanCount = 0
-            if (layoutManager is GridLayoutManager) {
-                spanCount=layoutManager.spanCount
-            }else if (layoutManager is StaggeredGridLayoutManager){
-                spanCount=layoutManager.spanCount
-            }
-            if (spanCount>0){
-                val itemWidth = remainSpace / spanCount
-                //创建content itemview，设置它的layoutparams 的原因，
-                // 是防止图片未加载出来前后 未占位 ，列表滑动时 上下闪动的效果
-
-                itemView.layoutParams = RecyclerView.LayoutParams(itemWidth, itemWidth)
-            }
             return HiViewHolder(itemView)
         }
 
@@ -186,6 +170,27 @@ class HiSliderView @JvmOverloads constructor(
             this.count = itemCount
             this.onBindView = onBindView
             this.onItemClick = onItemClick
+        }
+
+        override fun onViewAttachedToWindow(holder: HiViewHolder) {
+            super.onViewAttachedToWindow(holder)
+            //Content宽度
+            val remainSpace=width-paddingLeft-paddingRight-menuItemAttr.width
+            val layoutManager=contentView.layoutManager
+            var spanCount = 0
+            if (layoutManager is GridLayoutManager) {
+                spanCount=layoutManager.spanCount
+            }else if (layoutManager is StaggeredGridLayoutManager){
+                spanCount=layoutManager.spanCount
+            }
+            if (spanCount>0){
+                val itemWidth = remainSpace / spanCount
+                //创建content itemview，设置它的layoutparams 的原因，
+                // 是防止图片未加载出来前后 未占位 ，列表滑动时 上下闪动的效果
+                layoutParams.width=itemWidth
+                layoutParams.height=itemWidth
+                holder.itemView.layoutParams = layoutParams
+            }
         }
     }
 }

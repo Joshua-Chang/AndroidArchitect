@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_home_op_grid_item.*
 import org.devio.`as`.proj.common.ui.view.loadUrl
 import org.devio.`as`.proj.main.R
+import org.devio.`as`.proj.main.databinding.LayoutHomeGoodsListItem1Binding
+import org.devio.`as`.proj.main.databinding.LayoutHomeOpGridItemBinding
 import org.devio.`as`.proj.main.model.Subcategory
 import org.devio.`as`.proj.main.route.HiRoute
 import org.devio.hi.library.util.HiDisplayUtil
@@ -39,7 +41,7 @@ class GridItem(val list: List<Subcategory>) :
     }
 
     inner class GridAdapter(val context: Context, val list: List<Subcategory>) :
-        RecyclerView.Adapter<HiViewHolder>() {
+        RecyclerView.Adapter<GridAdapter.GridItemViewHolder>() {
         private lateinit var inflater: LayoutInflater
 
         init {
@@ -50,21 +52,14 @@ class GridItem(val list: List<Subcategory>) :
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
-        ): HiViewHolder {
-            val view = inflater.inflate(R.layout.layout_home_op_grid_item, parent, false)
-            return object : HiViewHolder(view) {
-
-            }
+        ): GridItemViewHolder {
+            val binding = LayoutHomeOpGridItemBinding.inflate(inflater, parent, false)
+            return GridItemViewHolder(binding.root,binding)
         }
 
-        override fun onBindViewHolder(holder: HiViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: GridItemViewHolder, position: Int) {
             val subcategory = list[position]
-//            holder.itemView.item_image.loadUrl(subcategory.subcategoryIcon)
-//            holder.itemView.item_title.text = subcategory.subcategoryName
-
-            holder.item_image.loadUrl(subcategory.subcategoryIcon)
-            holder.item_title.text = subcategory.subcategoryName
-
+            holder.binding.subCategory=subcategory
             holder.itemView.setOnClickListener {
                 //跳转商品列表
                 val bundle = Bundle()
@@ -74,9 +69,13 @@ class GridItem(val list: List<Subcategory>) :
                 HiRoute.startActivity(context, bundle, HiRoute.Destination.GOODS_LIST)
             }
         }
+        inner class GridItemViewHolder(view: View,val binding: LayoutHomeOpGridItemBinding):HiViewHolder(view){
+
+        }
 
         override fun getItemCount(): Int {
             return list.size
         }
     }
+
 }

@@ -17,14 +17,14 @@ import org.devio.hi.ui.item.HiDataItem
 import org.devio.hi.ui.refresh.HiOverViewState
 import org.devio.hi.ui.refresh.HiRefresh
 
-open class HiAbsListFragment : HiBaseFragment(), HiRefresh.OnRefreshListener {
+open abstract class HiAbsListFragment : HiBaseFragment(), HiRefresh.OnRefreshListener {
     var pageIndex: Int = 1
     private lateinit var hiAdapter: HiAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
     private lateinit var refreshHeaderView: HiTextOverView
     private var loadingView: ContentLoadingProgressBar? = null
     private var emptyView: EmptyView? = null
-    private var recyclerView: HiRecyclerView? = null
+    protected var recyclerView: HiRecyclerView? = null
     private var refreshLayout: HiRefreshLayout? = null
 
     companion object {

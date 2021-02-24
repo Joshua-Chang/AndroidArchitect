@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PlaygroundActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45"
+        android:background="@color/color_white">
+        <org.devio.hi.ui.icfont.IconFontTextView
+            android:id="@+id/action_back"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/if_back"
+            android:textSize="@dimen/sp_24"
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="@dimen/dp_45"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/color_000"
+            android:text="playground"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+    <View
+        android:background="@color/color_d1d2"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+    <Button
+        android:textColor="@color/color_white"
+        android:text="Flutter Native组件"
+        android:background="@color/color_298"
+        android:layout_margin="10dp"
+        android:id="@+id/native_widget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/go_rn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/color_298"
+        android:text="React Native组件"
+        android:textColor="@color/color_white" />
+</LinearLayout>

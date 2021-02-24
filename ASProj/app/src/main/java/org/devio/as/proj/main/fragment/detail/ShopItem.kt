@@ -97,7 +97,7 @@ class ShopItem(val detailModel: DetailModel) : HiDataItem<DetailModel, HiViewHol
             return R.layout.layout_detail_item_shop_goods_item
         }
         /*运行时动态改变每个图片的宽高onViewAttachedToWindow*/
-        override fun onViewAttachedToWindow(holder: HiViewHolder) {
+        override fun onViewAttachedToWindow(holder: GoodsItemHolder) {
             super.onViewAttachedToWindow(holder)
             val viewParent = holder.itemView.parent as ViewGroup
             val availableWidth = viewParent.measuredWidth - viewParent.paddingLeft - viewParent.paddingRight

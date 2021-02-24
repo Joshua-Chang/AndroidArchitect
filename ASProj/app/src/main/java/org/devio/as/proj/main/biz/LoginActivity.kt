@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import kotlinx.android.synthetic.main.activity_login.*
+import org.devio.`as`.proj.common.flutter.HiFlutterBridge
 import org.devio.`as`.proj.common.ui.component.HiBaseActivity
 import org.devio.`as`.proj.common.utils.SPUtil
 import org.devio.`as`.proj.main.R
@@ -42,6 +43,7 @@ class LoginActivity : HiBaseActivity() {
                 override fun onSuccess(response: HiResponse<String>) {
                     if (response.code == HiResponse.SUCCESS) {
                         showToast(getString(R.string.login_success))
+                        HiFlutterBridge.instance?.fire("onRefresh",null)
                         val data = response.data
                         AccountManager.loginSuccess(data!!)
                         setResult(Activity.RESULT_OK, Intent())

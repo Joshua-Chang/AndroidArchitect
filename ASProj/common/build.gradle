@@ -4,20 +4,25 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
 }
-def ext =rootProject.ext
-def dependency =rootProject.ext.dependencies
+def ext = rootProject.ext
+def dependency = rootProject.ext.dependencies
 android {
     compileSdkVersion 30
     buildToolsVersion '29.0.3'
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -33,22 +38,66 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dataBinding {
+        enabled = true
+    }
 }
+
+project.ext.react = [
+        entryFile    : "index.android.js",
+        enableHermes : false,
+        bundleInAlpha: true,
+        bundleInDebug: true,
+        bundleInBate : true
+]
+//rn
+
+def enableHermes = project.ext.react.get("enableHermes", false);
+def jscFlavor = 'org.webkit:android-jsc:+'
+
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+//rn end
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'com.github.bumptech.glide:okhttp3-integration:4.11.0'
-    api project(path: ':hi-ui')
     api project(path: ':hi-library')
+    api project(path: ':hi-ui')
 
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation dependency.lifecycle_extensions
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    kapt dependency.lifecycle_compiler
+    api dependency.constraintlayout
+    api dependency.appcompat
+    api dependency.material
+    api dependency.recyclerview
+    api dependency.fragment_ktx
 
-    implementation dependency.glide
+    //glide图片
+    api dependency.glide
     kapt dependency.glide_compiler
+
+    //http
+    implementation dependency.retrofit
+    api dependency.gson
+
+    //arouter
+    implementation dependency.arouter_api
+    kapt dependency.arouter_compiler
+
+    api project(':flutter')
+    implementation project(':hi-ability')
+
+    //rn
+    if (enableHermes) {
+        def hermesPath = "../../rn_module/node_modules/hermesvm/android/";
+        debugImplementation files(hermesPath + "hermes-debug.aar")
+        releaseImplementation files(hermesPath + "hermes-release.aar")
+    } else {
+        implementation jscFlavor
+    }
+    implementation "com.facebook.react:react-native:+" // From node_modules
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    //rn end
 }

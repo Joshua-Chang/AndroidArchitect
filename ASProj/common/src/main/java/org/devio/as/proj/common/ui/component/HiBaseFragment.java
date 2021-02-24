@@ -10,7 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public abstract class HiBaseFragment extends Fragment {
+import org.devio.as.proj.ability.analyse.IAnalysePage;
+
+public abstract class HiBaseFragment extends Fragment implements IAnalysePage {
     protected View layoutView;
     @LayoutRes
     public abstract int getLayoutId();

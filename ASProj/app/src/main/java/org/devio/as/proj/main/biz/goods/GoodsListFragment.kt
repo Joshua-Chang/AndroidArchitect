@@ -34,6 +34,9 @@ class GoodsListFragment : HiAbsListFragment() {
             return fragment
         }
     }
+    override fun getPageName(): String {
+        return "GoodsListFragment"
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
