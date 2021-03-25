@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.devio.as.proj.biz_home">
+    <application>
+        <activity
+            android:name=".goodslist.GoodsListActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".notice.NoticeListActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:screenOrientation="portrait" />
+    </application>
+</manifest>

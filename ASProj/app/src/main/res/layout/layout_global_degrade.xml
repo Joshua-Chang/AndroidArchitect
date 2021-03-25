@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DegradeGlobalActivity">
+    tools:context=".degrade.DegradeGlobalActivity">
     <org.devio.hi.ui.icfont.IconFontTextView
         android:id="@+id/action_back"
         android:layout_width="@dimen/dp_45"

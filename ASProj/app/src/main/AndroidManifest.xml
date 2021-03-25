@@ -27,22 +27,11 @@
         android:theme="@style/LaunchTheme"
         tools:replace="android:allowBackup"
         tools:targetApi="q">
-        <activity android:name=".biz.notice.NoticeListActivity" />
-        <activity android:name=".biz.goods.GoodsListActivity" />
-        <activity android:name=".fragment.detail.DetailActivity" />
-        <activity android:name=".DegradeGlobalActivity" />
+        <activity android:name=".degrade.DegradeGlobalActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/LaunchTheme"/>
         <!--configChanges 屏幕切换不重新走生命周期，而是走activity/fragment 的onConfigurationChanged-->
-        <activity
-            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
-            android:name=".MainActivity" android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".biz.LoginActivity" />
-        <activity android:name=".biz.RegistrationActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

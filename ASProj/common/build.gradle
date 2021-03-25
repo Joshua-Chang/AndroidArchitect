@@ -20,7 +20,7 @@ android {
         consumerProguardFiles "consumer-rules.pro"
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments += [AROUTER_MODULE_NAME: project.getName()]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
     }
@@ -64,6 +64,9 @@ dependencies {
 
     api project(path: ':hi-library')
     api project(path: ':hi-ui')
+    api project(path: ':service_login')
+    api project(path: ':hi-ability')
+
 
     implementation dependency.lifecycle_extensions
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -87,7 +90,6 @@ dependencies {
     kapt dependency.arouter_compiler
 
     api project(':flutter')
-    implementation project(':hi-ability')
 
     //rn
     if (enableHermes) {

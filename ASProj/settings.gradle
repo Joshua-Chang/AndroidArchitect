@@ -1,3 +1,8 @@
+include ':service_login'
+include ':pub_mod'
+include ':biz_detail'
+include ':biz_home'
+include ':biz_login'
 include ':alipaysdk-noutdid-15.8.00.201112210139'
 include ':hi-ability'
 include ':hi_debugtool'
