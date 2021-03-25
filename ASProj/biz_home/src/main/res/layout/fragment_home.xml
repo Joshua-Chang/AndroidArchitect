@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     android:background="@color/color_white"
     android:orientation="vertical">
+<!--    <org.devio.hi.ui.title.HiNavigationBar
+        android:id="@+id/navgation_bar"
+        app:nav_title="搜素你想要的商品"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"/>-->
 
     <org.devio.hi.ui.icfont.IconFontTextView
         android:id="@+id/search_container"

@@ -1,7 +1,7 @@
 package org.devio.`as`.proj.biz_home.api
 
-import org.devio.`as`.proj.main.model.HomeModel
-import org.devio.`as`.proj.main.model.TabCategory
+import org.devio.`as`.proj.biz_home.model.HomeModel
+import org.devio.`as`.proj.biz_home.model.TabCategory
 import org.devio.hi.library.restful.HiCall
 import org.devio.hi.library.restful.annotation.CacheStrategy
 import org.devio.hi.library.restful.annotation.Filed

@@ -36,4 +36,13 @@
     <style name="leftMargin_lineAppearance" parent="lineAppearance">
         <item name="leftMargin">10dp</item>
     </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="hiNavigationStyle">@style/navigationStyle</item>
+        <item name="hiSearchViewStyle">@style/searchViewStyle</item>
+    </style>
 </resources>

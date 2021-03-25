@@ -11,10 +11,11 @@ import org.devio.hi.ui.R
 
 internal object AttrsParse {
     fun parseNavAttrs(context: Context, attrs: AttributeSet?, defStyleAttr: Int): Attrs {
-        val value = TypedValue()
-        context.theme.resolveAttribute(R.attr.hiNavigationStyle, value, true)
+        val value = TypedValue()/*接收资源值*/
+        /*把默认的属性定义放到app下的theme内，成为全局theme，省去每次都声明*/
+        context.theme.resolveAttribute(R.attr.hiNavigationStyle, value, true/*是否解析ref类型资源*/)
 
-        //xml-->theme.navigationStyle---navigationstyle
+        //优先顺序xml-->theme.navigationStyle---navigationstyle
         val defStyleRes = if (value.resourceId != 0) value.resourceId else R.style.navigationStyle
         val array = context.obtainStyledAttributes(
             attrs,

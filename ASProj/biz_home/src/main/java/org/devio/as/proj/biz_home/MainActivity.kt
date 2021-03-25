@@ -15,7 +15,7 @@ import org.devio.hi.library.util.HiViewUtil
 class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
     private var activityLogic : MainActivityLogic? =null
     override fun onCreate(savedInstanceState: Bundle?) {
-        /*setTheme(R.style.Theme_ASProj)*/
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         activityLogic= MainActivityLogic(this, savedInstanceState)

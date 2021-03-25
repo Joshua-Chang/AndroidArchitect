@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import kotlinx.android.synthetic.main.fragment_category.*
-import kotlinx.android.synthetic.main.fragment_list.*
 import org.devio.`as`.proj.biz_home.R
 import org.devio.`as`.proj.biz_home.model.Subcategory
 import org.devio.`as`.proj.biz_home.model.TabCategory

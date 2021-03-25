@@ -30,7 +30,7 @@ class HiNavigationBar @JvmOverloads constructor(
     private var titleContainer: LinearLayout? = null
 
     //左右按钮
-    private var mLeftLastViewId = View.NO_ID
+    private var mLeftLastViewId = View.NO_ID/*记录上次添加的view以便判断后续的位置设置*/
     private var mRightLastViewId = View.NO_ID
     private val mLeftViewList = ArrayList<View>()
     private val mRightViewList = ArrayList<View>()
@@ -88,7 +88,7 @@ class HiNavigationBar @JvmOverloads constructor(
         if (viewId == View.NO_ID) {
             throw IllegalStateException("left view must has an unique id.")
         }
-        if (mLeftLastViewId == View.NO_ID) {
+        if (mLeftLastViewId == View.NO_ID) {/*没添加过*/
             params.addRule(ALIGN_PARENT_LEFT, viewId)
         } else {
             params.addRule(RIGHT_OF, mLeftLastViewId)
@@ -180,7 +180,7 @@ class HiNavigationBar @JvmOverloads constructor(
             titleView = IconFontTextView(context, null)
             titleView?.apply {
                 gravity = Gravity.CENTER
-                isSingleLine = true
+                maxLines = 1
                 ellipsize = TextUtils.TruncateAt.END
                 setTextColor(navAttrs.titleTextColor)
 
@@ -196,7 +196,8 @@ class HiNavigationBar @JvmOverloads constructor(
             subtitleView = IconFontTextView(context, null)
             subtitleView?.apply {
                 gravity = Gravity.CENTER
-                isSingleLine = true
+                /*isSingleLine = true废弃*/
+                maxLines=1
                 ellipsize = TextUtils.TruncateAt.END
                 setTextColor(navAttrs.subTitleTextColor)
                 textSize = navAttrs.subTitleSize
@@ -228,7 +229,7 @@ class HiNavigationBar @JvmOverloads constructor(
             if (subtitleView == null || TextUtils.isEmpty(subtitleView!!.text)) {
                 titleView?.setTextSize(TypedValue.COMPLEX_UNIT_PX, navAttrs.titleTextSize)
                 titleView?.typeface = Typeface.DEFAULT_BOLD
-            } else {
+            } else {/*有副标题时，主标题不再粗体*/
                 titleView?.setTextSize(
                     TypedValue.COMPLEX_UNIT_PX,
                     navAttrs.titleTextSizeWithSubTitle
@@ -254,10 +255,10 @@ class HiNavigationBar @JvmOverloads constructor(
         button.setTextSize(TypedValue.COMPLEX_UNIT_PX, navAttrs.btnTextSize)
         button.setTextColor(navAttrs.btnTextColor)
         button.gravity = Gravity.CENTER
-        button.includeFontPadding = false
+        button.includeFontPadding = false/**/
         return button
     }
-
+    /*左右侧数量不等时的标题居中，或空间不足策略*/
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 

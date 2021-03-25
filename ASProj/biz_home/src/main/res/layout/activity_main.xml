@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.devio.as.proj.common.tab.HiFragmentTabView
+    <org.devio.as.proj.common.tab.FragmentTabView
         android:id="@+id/fragment_tab_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

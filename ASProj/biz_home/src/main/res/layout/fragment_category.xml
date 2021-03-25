@@ -42,4 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/line" />
+
+    <include
+        android:id="@+id/content_loading"
+        layout="@layout/layout_content_loading_view" />
 </LinearLayout>

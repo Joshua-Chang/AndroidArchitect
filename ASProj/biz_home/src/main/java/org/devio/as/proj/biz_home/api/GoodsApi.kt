@@ -1,6 +1,6 @@
 package org.devio.`as`.proj.biz_home.api
 
-import org.devio.`as`.proj.main.model.GoodsList
+import org.devio.`as`.proj.biz_home.model.GoodsList
 import org.devio.hi.library.restful.HiCall
 import org.devio.hi.library.restful.annotation.Filed
 import org.devio.hi.library.restful.annotation.GET

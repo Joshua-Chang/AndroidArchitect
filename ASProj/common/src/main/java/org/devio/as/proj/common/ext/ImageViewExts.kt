@@ -29,9 +29,11 @@ fun ImageView.loadUrl(url: String,callback: (Drawable)->Unit){
         }
     })
 }
-fun ImageView.loadCircle(url: String) {
-    if (HiViewUtil.isActivityDestroyed(context) || TextUtils.isEmpty(url)) return
-    Glide.with(this).load(url).transform(CenterCrop()).into(this)
+@BindingAdapter(value = ["circleUrl"])
+fun ImageView.loadCircle(circleUrl: String?) {
+    if (HiViewUtil.isActivityDestroyed(context) || TextUtils.isEmpty(circleUrl)) return
+    Glide.with(this).load(circleUrl)
+        .transform(CircleCrop()).into(this)
 }
 //和imageView的CenterCrop有冲突，加载bitmap后先圆角，然后centerCrop，圆角有可能被裁减掉
 //Glide.with(this).load(url).transform(RoundedCorners(corner)).into(this)
@@ -56,6 +58,7 @@ fun ImageView.loadCircleBorder(
     Glide.with(this).load(url).into(this)
 }
 
+
 class CircleBorderTransform(var borderWidth: Float, var borderColor: Int) : CircleCrop() {
     private var borderPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
@@ -78,5 +81,11 @@ class CircleBorderTransform(var borderWidth: Float, var borderColor: Int) : Circ
         canvas.drawCircle(halfWidth,halfHeight,Math.min(halfWidth,halfHeight)-borderWidth/2,borderPaint)
         canvas.setBitmap(null)//清空
         return circleCropBitmap
+    }
+    @BindingAdapter(value = ["circleUrl"])
+    fun ImageView.loadCircle(circleUrl: String?) {
+        if (HiViewUtil.isActivityDestroyed(context) || TextUtils.isEmpty(circleUrl)) return
+        Glide.with(this).load(circleUrl)
+            .transform(CircleCrop()).into(this)
     }
 }

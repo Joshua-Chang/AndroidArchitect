@@ -5,7 +5,6 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import com.umeng.analytics.MobclickAgent
 import com.umeng.commonsdk.UMConfigure
 import com.umeng.message.IUmengRegisterCallback
 import com.umeng.message.PushAgent
@@ -117,10 +116,12 @@ object PushInitialization {
         }
 
         application.registerActivityLifecycleCallbacks(object : SimpleLifecycleCallbacks() {
-            override fun onActivityPreCreated(activity: Activity, savedInstanceState: Bundle?) {
-                super.onActivityPreCreated(activity, savedInstanceState)
-                PushAgent.getInstance(activity.application).onAppStart();
-            }
+            // TODO: 2021/3/26 kotlin 问题 ' onActivityPreCreated' overrides nothing
+//            override fun onActivityPreCreated(activity: Activity, savedInstanceState: Bundle?) {
+//                super.onActivityPreCreated(activity, savedInstanceState)
+//                PushAgent.getInstance(activity.application).onAppStart();
+//            }
+
         })
     }
 

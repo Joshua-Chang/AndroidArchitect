@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<!--    android:minAspectRatio="1"-->
 
     <application
         tools:overrideLibrary="com.huawei.hms.scankit"
@@ -19,7 +20,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:maxAspectRatio="2.4"
-        android:minAspectRatio="1"
         android:networkSecurityConfig="@xml/network_sercurity_config"
         android:resizeableActivity="true"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -30,7 +30,7 @@
         <activity android:name=".degrade.DegradeGlobalActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:screenOrientation="portrait"
-            android:theme="@style/LaunchTheme"/>
+            android:theme="@style/AppTheme"/>
         <!--configChanges 屏幕切换不重新走生命周期，而是走activity/fragment 的onConfigurationChanged-->
 
         <provider
