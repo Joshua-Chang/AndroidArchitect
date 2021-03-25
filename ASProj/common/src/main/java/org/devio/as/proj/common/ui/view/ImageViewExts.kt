@@ -35,6 +35,7 @@ fun ImageView.loadCircle(url: String) {
 }
 //和imageView的CenterCrop有冲突，加载bitmap后先圆角，然后centerCrop，圆角有可能被裁减掉
 //Glide.with(this).load(url).transform(RoundedCorners(corner)).into(this)
+//xml中直接app:url="@{subCategory.subcategoryIcon}"
 @BindingAdapter(value = ["url","corner"],requireAll = false)/*两个参数不必全部，有一个参数即可调用此方法*/
 fun ImageView.loadCorner(url: String, corner: Int) {
     //加载bitmap后先centerCrop，然后圆角

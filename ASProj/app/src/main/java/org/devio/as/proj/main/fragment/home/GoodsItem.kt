@@ -37,6 +37,7 @@ open class GoodsItem(val goodsModel: GoodsModel, val hotTab: Boolean/*是热门�
 //        holder.itemView.item_price.text = selectPrice(goodsModel.groupPrice, goodsModel.marketPrice)
 //        holder.itemView.item_sale_desc.text = goodsModel.completedNumText
 
+        /*若没有xml中定义的名为goodsModel的binding时，可以用setVariable具体设置*/
         holder.binding.setVariable(BR.goodsModel,goodsModel)
 
         val itemLabelContainer = holder.itemView.item_label_container
@@ -131,7 +132,7 @@ open class GoodsItem(val goodsModel: GoodsModel, val hotTab: Boolean/*是热门�
         return GoodsItemHolder(binding)
     }
 
-    /*binding和viewHolder相关联*/
+    /*binding和viewHolder相关联，以防止同类型的item走onBindViewHolder时找不到binding*/
     class GoodsItemHolder(val binding: ViewDataBinding) : HiViewHolder(binding.root) {
 
     }

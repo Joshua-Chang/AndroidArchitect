@@ -19,8 +19,8 @@ import org.devio.hi.library.restful.HiResponse
  * @创建人：常守达
  * @备注：
  */
-class HomeViewModel(private val savedState: SavedStateHandle) : ViewModel() {
-
+class HomeViewModel(private val savedState: SavedStateHandle/*用savedState来缓存数据*/) : ViewModel() {
+    /*savedState 为官方内存不足时的缓存*/
     fun queryCategoryTab(): MutableLiveData<List<TabCategory>?> {
         val liveData = MutableLiveData<List<TabCategory>?>()
         val memCache = savedState.get<List<TabCategory>?>("categoryTabs")
@@ -34,6 +34,7 @@ class HomeViewModel(private val savedState: SavedStateHandle) : ViewModel() {
                     val data = response.data
                     if (response.successful() && data != null) {
                         liveData.value = data
+//                        liveData.postValue(data)
                         savedState.set("categoryTabs", data)
                     }
                 }

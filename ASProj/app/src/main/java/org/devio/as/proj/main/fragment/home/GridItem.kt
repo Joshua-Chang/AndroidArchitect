@@ -53,6 +53,7 @@ class GridItem(val list: List<Subcategory>) :
             parent: ViewGroup,
             viewType: Int
         ): GridItemViewHolder {
+            /*dataBinding改造*/
             val binding = LayoutHomeOpGridItemBinding.inflate(inflater, parent, false)
             return GridItemViewHolder(binding.root,binding)
         }

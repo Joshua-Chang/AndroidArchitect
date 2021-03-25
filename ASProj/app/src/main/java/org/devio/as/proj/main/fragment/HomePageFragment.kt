@@ -31,8 +31,9 @@ class HomePageFragment : HiBaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         HiTabBottomLayout.clipBottomPadding(view_pager)
 //        queryTabList()
+        /*mvvm改造*/
         val viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        viewModel.queryCategoryTab().observe(viewLifecycleOwner, Observer {
+        viewModel.queryCategoryTab()/*对返回的liveData*/.observe(viewLifecycleOwner, Observer {
             it?.let { updateUI(it) }
         })
     }

@@ -45,6 +45,7 @@ class HomeTabFragment : HiAbsListFragment() {
         enableLoadMore { queryTabCategoryList(CacheStrategy.NET_ONLY) }
     }
 
+    /*mvvm改造*/
     private fun queryTabCategoryList(cacheStrategy: Int) {
         viewModel.queryTabCategoryList(categoryId, pageIndex, cacheStrategy)
             .observe(viewLifecycleOwner, Observer {
