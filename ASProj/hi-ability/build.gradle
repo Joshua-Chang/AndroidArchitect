@@ -66,6 +66,9 @@ android {
 
             buildConfigField("String", "WX_SHARE_APP_KEY", "\"${WX_SHARE_APP_KEY}\"")
             buildConfigField("String", "WX_SHARE_APP_SECRET", "\"${WX_SHARE_APP_SECRET}\"")
+
+            buildConfigField("String", "WX_PAY_APP_KEY", "\"${WX_PAY_APP_KEY}\"")
+            buildConfigField("String", "WX_PAY_APP_ID", "\"${WX_PAY_APP_ID}\"")
         }
     }
     compileOptions {

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.Intent
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -11,6 +12,7 @@ import com.umeng.commonsdk.statistics.common.DeviceConfig
 import org.devio.`as`.proj.ability.analyse.AnalyseUtil
 import org.devio.`as`.proj.ability.pay.alipay.AliPayHelper
 import org.devio.`as`.proj.ability.pay.alipay.PayResult
+import org.devio.`as`.proj.ability.pay.wxpay.WxPayHelper
 import org.devio.`as`.proj.ability.push.IPushMessageHandler
 import org.devio.`as`.proj.ability.push.PushInitialization
 import org.devio.`as`.proj.ability.scan.ScanActivity
@@ -76,4 +78,18 @@ object HiAbility {
     fun aliPay(activity: Activity, orderInfo: String, observer: Observer<PayResult>) {
         AliPayHelper.pay(activity, orderInfo, observer)
     }
+
+    private val wxPayResultLiveData=MutableLiveData<Int>()
+    fun wxPay(activity: Activity, parameters: HashMap<String,String>, observer: Observer<Int>) {
+        if (activity is FragmentActivity) {
+            wxPayResultLiveData.observe(activity,observer)
+        }
+        WxPayHelper.pay(parameters)
+    }
+
+    internal fun postWXPayResult(result: Int) {
+        wxPayResultLiveData.postValue(result)
+        wxPayResultLiveData.value=null/*清空*/
+    }
+
 }

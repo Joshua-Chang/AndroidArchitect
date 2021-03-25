@@ -16,6 +16,8 @@ description: A new flutter module project.
 # a `flutter run` or a `flutter make-host-app-editable`. It has no impact
 # on any other native host app that you embed your Flutter project into.
 version: 1.0.0+1
+# version number+build number 对应android的
+# versionName+versionCode
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -26,10 +28,10 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
+  cupertino_icons: ^0.1.2 #不指定或any版本代表最新
   http: ^0.12.1
-  dio: ^3.0.9
-  flutter_staggered_grid_view: ^0.3.0
+  dio: ^3.0.9 #大版本不变，小版本最新='>=3.0.9 <4.0.0'
+  flutter_staggered_grid_view: 0.3.2 #具体版本
   transparent_image: ^1.0.0
 
 dev_dependencies:

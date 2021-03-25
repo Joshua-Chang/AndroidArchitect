@@ -20,8 +20,10 @@
     <!--相机权限-->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application tools:overrideLibrary="com.huawei.hms.scankit">
@@ -220,7 +222,15 @@
         <activity
             android:name=".scan.ScanActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".pay.wxpay.WXPayEntryActivity"
+            android:launchMode="singleTop"
+            android:exported="true"/>
 
-
+        <!--别名 ：baoming.wxapi.WXPayEntryActivity-->
+        <activity-alias
+            android:name="${applicationId}.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:targetActivity="org.devio.as.proj.ability.pay.wxpay.WXPayEntryActivity"/>
     </application>
 </manifest>

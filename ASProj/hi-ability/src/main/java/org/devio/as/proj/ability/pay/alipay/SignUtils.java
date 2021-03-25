@@ -4,6 +4,9 @@ import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 
+/**
+ * 支付宝提供的代码：PKCS8加签 SHA1/SHA256
+ */
 public class SignUtils {
 
 	private static final String ALGORITHM = "RSA";
