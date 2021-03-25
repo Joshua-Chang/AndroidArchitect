@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".scene2.Scene2Activity" />
+        <activity android:name=".scene2.Scene3Activity" />
     </application>
 
 </manifest>
