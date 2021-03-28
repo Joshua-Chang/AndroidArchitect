@@ -1,10 +1,8 @@
 package org.devio.`as`.proj.biz_home.home
 
-import android.os.Build
 import android.os.Bundle
 import android.util.SparseArray
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -37,8 +35,7 @@ class HomePageFragment : HiBaseFragment() {
             it?.let { updateUI(it) }
         })
 //        navgation_bar.setNavListener({activity?.finish()})
-//        navgation_bar.addRightTextButton("111",View.generateViewId())
-//        navgation_bar.addRightTextButton("222",View.generateViewId())
+//        navgation_bar.addRightTextButton("搜索",View.generateViewId())
     }
 
     override fun getPageName(): String {

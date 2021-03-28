@@ -159,7 +159,7 @@ class HiNavigationBar @JvmOverloads constructor(
         subtitleView?.visibility = if (TextUtils.isEmpty(subtitle)) View.GONE else View.VISIBLE
     }
 
-    fun setCenterView(view: View) {
+    fun setCenterView(view: View) {/*自定义中间view，可以为searchView等*/
         var params = view.layoutParams
         if (params == null) {
             params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)

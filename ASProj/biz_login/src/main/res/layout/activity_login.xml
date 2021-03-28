@@ -79,7 +79,7 @@
         android:layout_marginLeft="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_10"
         android:layout_marginRight="@dimen/dp_10"
-        android:textColor="@color/white"
+        android:textColor="@color/color_white"
         android:text="@string/title_login"
         android:textSize="@dimen/sp_16"
         app:backgroundTint="@color/color_dd2"

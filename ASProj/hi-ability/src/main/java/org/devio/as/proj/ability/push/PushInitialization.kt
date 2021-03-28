@@ -115,14 +115,13 @@ object PushInitialization {
             }
         }
 
-        application.registerActivityLifecycleCallbacks(object : SimpleLifecycleCallbacks() {
-            // TODO: 2021/3/26 kotlin 问题 ' onActivityPreCreated' overrides nothing
+//        application.registerActivityLifecycleCallbacks(object : SimpleLifecycleCallbacks() {
+//            // TODO: 2021/3/26 kotlin 问题 ' onActivityPreCreated' overrides nothing
 //            override fun onActivityPreCreated(activity: Activity, savedInstanceState: Bundle?) {
 //                super.onActivityPreCreated(activity, savedInstanceState)
 //                PushAgent.getInstance(activity.application).onAppStart();
 //            }
-
-        })
+//        })
     }
 
     fun onOEMPush(message: String) {
