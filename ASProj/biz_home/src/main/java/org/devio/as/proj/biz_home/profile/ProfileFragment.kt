@@ -80,6 +80,9 @@ class ProfileFragment : HiBaseFragment() {
         binding.llNotice.setOnClickListener {
             HiRoute.startActivity(context, destination = "/notice/list")
         }
+        binding.itemHistory.setOnClickListener {
+            HiRoute.startActivity(context, destination = "/playground/main")
+        }
     }
 
     private fun updateBanner(bannerList: List<Notice>?) {

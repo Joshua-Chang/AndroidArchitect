@@ -1,6 +1,7 @@
 package org.devio.`as`.proj.biz_home.home
 
 import android.os.Bundle
+import android.util.Log
 import android.util.SparseArray
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -15,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import org.devio.`as`.proj.ability.HiAbility
 import org.devio.`as`.proj.biz_home.R
 import org.devio.`as`.proj.biz_home.model.TabCategory
+import org.devio.`as`.proj.common.route.HiRoute
 import org.devio.`as`.proj.common.ui.component.HiBaseFragment
 import org.devio.hi.ui.tab.bottom.HiTabBottomLayout
 import org.devio.hi.ui.tab.common.IHiTabLayout
@@ -34,8 +36,10 @@ class HomePageFragment : HiBaseFragment() {
         viewModel.queryCategoryTab()/*对返回的liveData*/.observe(viewLifecycleOwner, Observer {
             it?.let { updateUI(it) }
         })
-//        navgation_bar.setNavListener({activity?.finish()})
-//        navgation_bar.addRightTextButton("搜索",View.generateViewId())
+
+        search_container.setOnClickListener {
+            HiRoute.startActivity(context,null,"/search/main")
+        }
     }
 
     override fun getPageName(): String {

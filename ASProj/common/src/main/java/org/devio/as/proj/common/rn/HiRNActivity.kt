@@ -70,7 +70,7 @@ class HiRNActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
 //        mReactRootView?.startReactApplication(mReactInstanceManager, "rn_module",params)
         mReactRootView = HiRNCacheManager.instance?.getCachedReactRootView(
             this,
-            routeTo,
+            routeTo!!,
             params
         )
         mReactInstanceManager = mReactRootView!!.reactInstanceManager

@@ -185,6 +185,7 @@ class HiSliderView @JvmOverloads constructor(
             }
             if (spanCount>0){
                 val itemWidth = remainSpace / spanCount
+                val layoutParams = holder.itemView.layoutParams
                 //创建content itemview，设置它的layoutparams 的原因，
                 // 是防止图片未加载出来前后 未占位 ，列表滑动时 上下闪动的效果
                 layoutParams.width=itemWidth

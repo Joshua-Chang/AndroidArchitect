@@ -11,7 +11,7 @@ import org.devio.`as`.proj.common.R
 import org.devio.hi.library.log.HiLog
 import org.devio.hi.ui.item.HiAdapter
 
-class HiRecyclerView @JvmOverloads constructor(
+open class HiRecyclerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : RecyclerView(context, attrs, defStyleAttr) {
     private var loadMoreScrollListener: OnScrollListener? = null
@@ -37,7 +37,8 @@ class HiRecyclerView @JvmOverloads constructor(
             val lastVisibleItem = findLastVisibleItem(recyclerView)
             val firstVisibleItem = findFirstVisibleItem(recyclerView)
             if (lastVisibleItem <= 0) return
-            val isArriveBottom = lastVisibleItem > totalItemCount - 1
+//            val isArriveBottom = lastVisibleItem > totalItemCount - 1
+            val isArriveBottom = lastVisibleItem >= totalItemCount - 1&&firstVisibleItem>0/*列表可以滑动的*/
             if (newState == SCROLL_STATE_DRAGGING && (canScrollVertically || isArriveBottom)) {
                 addFooterView()
             }

@@ -6,13 +6,13 @@ import android.view.View
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.fragment.app.FragmentManager
-import org.devio.`as`.proj.biz_home.category.CategoryFragment
 import org.devio.`as`.proj.biz_home.favorite.FavoriteFragment
 import org.devio.`as`.proj.biz_home.home.HomePageFragment
 import org.devio.`as`.proj.biz_home.profile.ProfileFragment
 import org.devio.`as`.proj.biz_home.recommend.RecommendFragment
 import org.devio.`as`.proj.common.tab.FragmentTabView
 import org.devio.`as`.proj.common.tab.HiTabViewAdapter
+import org.devio.`as`.proj.main.fragment.category.CategoryFragment
 import org.devio.hi.ui.tab.bottom.HiTabBottomInfo
 import org.devio.hi.ui.tab.bottom.HiTabBottomLayout
 

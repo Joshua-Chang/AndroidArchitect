@@ -66,7 +66,7 @@ internal class ScanActivity : AppCompatActivity() {
 
         container.addView(remoteView, params)
 
-        initOperations();
+        initOperations()
     }
 
     private fun initOperations() {

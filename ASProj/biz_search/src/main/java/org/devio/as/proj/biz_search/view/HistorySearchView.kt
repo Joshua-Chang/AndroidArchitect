@@ -19,7 +19,6 @@ class HistorySearchView @JvmOverloads constructor(
     private val keywords = ArrayList<KeyWord>()
 
     init {
-
         LayoutInflater.from(context).inflate(R.layout.layout_history_search, this, true)
         orientation = LinearLayout.VERTICAL
     }
@@ -32,7 +31,7 @@ class HistorySearchView @JvmOverloads constructor(
         for (index in 0 until histories.size) {
             var chipItem: Chip
             val childCount = chip_group.childCount
-            if (index < childCount) {
+            if (index < childCount) {/*复用*/
                 chipItem = chip_group.getChildAt(index) as Chip
             } else {
                 chipItem = generateChipItem()
@@ -51,10 +50,13 @@ class HistorySearchView @JvmOverloads constructor(
         return chipItem
     }
 
+    /**
+     * 单个chip的点击事件，回调keyword
+     */
     fun setOnCheckedChangedListener(callback: (KeyWord) -> Unit) {
         chip_group.setOnCheckedChangeListener { chipGroup, checkedId ->
             for (index in 0 until chipGroup.childCount) {
-                val childAt = chip_group.getChildAt(index) as AppCompatCheckBox
+                val childAt = chip_group.getChildAt(index) as AppCompatCheckBox/*是Chip的父类*/
                 if (childAt.id == checkedId && childAt.isChecked) {
                     //chipItem 具有状态，被选中后，再次点击会被切换到未选中态，此时回调的checkedId=-1
                     //我们为了让 一个chipItem能够重复多次点击，所以选中后，主动清除chip_group的选择标记

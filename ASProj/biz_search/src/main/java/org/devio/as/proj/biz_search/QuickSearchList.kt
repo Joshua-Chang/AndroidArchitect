@@ -1,4 +1,4 @@
-package org.devio.as.proj.biz_search
+package org.devio.`as`.proj.biz_search
 
 import org.devio.`as`.proj.pub_mod.model.model.GoodsModel
 import java.io.Serializable

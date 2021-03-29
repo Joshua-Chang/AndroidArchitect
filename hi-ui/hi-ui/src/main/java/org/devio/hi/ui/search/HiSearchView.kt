@@ -28,27 +28,22 @@ class HiSearchView @JvmOverloads constructor(
         const val DEBOUNCE_TRIGGER_DURATION = 200L
     }
 
-    var editText: EditText? = null
     private var simpleTextWatcher: SimpleTextWatcher? = null
-    private val debounceRunnable = Runnable {
-        if (simpleTextWatcher != null) {
-            simpleTextWatcher!!.afterTextChanged(editText?.text)
-        }
-    }
-
+    var editText: EditText? = null
 
     //搜索小图标 和 默认提示语 ，以及 container
     private var searchIcon: IconFontTextView? = null
     private var hintTv: TextView? = null
     private var searchIconHintContainer: LinearLayout? = null
 
+    //右侧清除小图标
+    private var clearIcon: IconFontTextView? = null
+
+
     //keyword
     private var keywordContainer: LinearLayout? = null
     private var keywordTv: TextView? = null
     private var kwClearIcon: IconFontTextView? = null
-
-    //右侧清除小图标
-    private var clearIcon: IconFontTextView? = null
 
     private val viewAttrs: AttrsParse.Attrs =
         AttrsParse.parseSearchViewAttrs(context, attrs, defStyleAttr)
@@ -61,12 +56,15 @@ class HiSearchView @JvmOverloads constructor(
         initClearIcon()
         //初始化 默认的提示语 和 searchIcon  create-bind property --addview
         initSearchIconHintContainer()
+
+        background = viewAttrs.searchBackground
         editText?.addTextChangedListener(object : SimpleTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
                 val hasContent = s?.trim()?.length ?: 0 > 0
                 changeVisibility(clearIcon, hasContent)
                 changeVisibility(searchIconHintContainer, !hasContent)
 
+                /*触发搜索的联想，并不立即发送请求，延迟一下，以确认*/
                 if (simpleTextWatcher != null) {
                     MainHandler.remove(debounceRunnable)
                     MainHandler.postDelay(DEBOUNCE_TRIGGER_DURATION, debounceRunnable)
@@ -75,6 +73,15 @@ class HiSearchView @JvmOverloads constructor(
         })
     }
 
+    private val debounceRunnable = Runnable {
+        if (simpleTextWatcher != null) {
+            simpleTextWatcher!!.afterTextChanged(editText?.text)
+        }
+    }
+
+    fun setDebounceTextChangedListener(simpleTextWatcher: SimpleTextWatcher) {
+        this.simpleTextWatcher = simpleTextWatcher
+    }
     fun setKeyword(keyword: String?, listener: OnClickListener) {
         //当用户点击 联想词面板的时候，会调用该方法，把关键词设置到搜索框上面
         ensureKeywordContainer()/*先判断搜索框是否初始化*/
@@ -252,5 +259,13 @@ class HiSearchView @JvmOverloads constructor(
         hintTv?.text = hintText
     }
 
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        MainHandler.remove(debounceRunnable)
+    }
+
+    fun getKeyword(): String? {
+        return keywordTv?.text.toString()
+    }
 
 }

@@ -3,7 +3,7 @@ package org.devio.`as`.proj.biz_search.view
 import android.content.Context
 import android.util.AttributeSet
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.devio.hi.ui.recyclerview.HiRecyclerView
+import org.devio.`as`.proj.common.ui.view.HiRecyclerView
 import org.devio.`as`.proj.pub_mod.model.items.GoodsItem
 import org.devio.`as`.proj.pub_mod.model.model.GoodsModel
 import org.devio.hi.ui.item.HiAdapter

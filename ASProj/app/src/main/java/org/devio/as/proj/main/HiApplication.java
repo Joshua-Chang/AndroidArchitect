@@ -27,7 +27,7 @@ public class HiApplication extends HiBaseApplication {
         ARouter.init(this);
 //        HiFlutterCacheManager.getInstance().preLoad(this);
         HiFlutterCacheManager.getInstance().preLoadDartVM(this);
-        CrashMgr.INSTANCE.init();
-        HiAbility.INSTANCE.init(this,"Umeng",null);
+//        CrashMgr.INSTANCE.init();
+//        HiAbility.INSTANCE.init(this,"Umeng",null);
     }
 }

@@ -115,7 +115,7 @@ class RetrofitCallFactory(baseUrl: String) : HiCall.Factory {
             }
             if (request.formPost) {
                 requestBody = builder.build()
-            } else {
+            } else {/*非表单提交如json*/
                 //bugfix: reuqest-header   content-type="application/json; charset=utf-8"
                 requestBody = RequestBody.create(
                     MediaType.parse("application/json;charset=utf-8"),
