@@ -1,3 +1,4 @@
+include ':biz_order'
 include ':biz_search'
 include ':service_login'
 include ':pub_mod'

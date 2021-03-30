@@ -21,7 +21,7 @@ class MainActivity : HiBaseActivity(), MainActivityLogic.ActivityProvider {
         activityLogic= MainActivityLogic(this, savedInstanceState)
         HiStatusBar.setStatusBar(this,true,Color.WHITE,false)
         HiDataBus.with<String>("stickyData").setStickyData("stickyData from mainActivity")
-        preLoadRN()
+//        preLoadRN()
     }
 
     private fun preLoadRN() {/*在原生界面 预见去加载哪个RN界面*/

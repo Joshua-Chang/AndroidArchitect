@@ -68,7 +68,7 @@ dependencies {
     implementation project(path: ':biz_detail')
     implementation project(path: ':biz_login')
     implementation project(path: ':biz_search')
-//    implementation project(path: ':biz_order')
+    implementation project(path: ':biz_order')
     implementation project(path: ':common')
     debugImplementation project(path: ':hi_debugtool')
 

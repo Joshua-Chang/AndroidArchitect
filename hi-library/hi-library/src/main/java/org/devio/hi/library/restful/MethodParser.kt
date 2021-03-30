@@ -72,6 +72,13 @@ class MethodParser(private val baseUrl: String, method: Method) {
                 relativeUrl = annotation.value
                 httpMethod = HiRequest.METHOD.POST
                 formPost = annotation.formPost
+            } else if (annotation is PUT) {
+                formPost = annotation.formPost
+                httpMethod = HiRequest.METHOD.PUT
+                relativeUrl = annotation.value
+            } else if (annotation is DELETE) {
+                httpMethod = HiRequest.METHOD.DELETE
+                relativeUrl = annotation.value
             } else if (annotation is Headers) {
                 val headersArray: Array<out String> = annotation.value
                 //@Headers("auth-token:token", "accountId:123456")
