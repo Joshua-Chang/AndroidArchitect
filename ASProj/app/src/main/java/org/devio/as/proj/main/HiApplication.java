@@ -13,6 +13,9 @@ import org.devio.hi.library.log.HiLogManager;
 import org.devio.hi.library.util.ActivityManager;
 import org.devio.hi.library.crash.CrashHandler;
 
+import dagger.hilt.android.HiltAndroidApp;
+
+@HiltAndroidApp
 public class HiApplication extends HiBaseApplication {
     @Override
     public void onCreate() {

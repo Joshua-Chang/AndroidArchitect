@@ -3,7 +3,17 @@
     package="org.devio.as.proj.biz_order">
 
     <application>
-        <activity android:name=".OrderActivity"></activity>
+        <activity
+            android:name=".OrderActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".address.AddressListActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

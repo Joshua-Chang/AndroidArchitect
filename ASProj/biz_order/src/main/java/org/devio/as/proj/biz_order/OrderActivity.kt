@@ -134,7 +134,7 @@ class OrderActivity : HiBaseActivity() {
         if (data != null && requestCode == REQUEST_CODE_ADDRESS_LIST && resultCode == Activity.RESULT_OK) {
             val address = data.getParcelableExtra<Address>("result")
             if (address != null) {
-//                updateAddress(address)
+                updateAddress(address)
             }
         }
     }

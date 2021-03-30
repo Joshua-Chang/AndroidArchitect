@@ -106,7 +106,7 @@ class MethodParser(private val baseUrl: String, method: Method) {
 
         require(
             (httpMethod == HiRequest.METHOD.GET)
-                    || (httpMethod == HiRequest.METHOD.POST)
+                    || (httpMethod == HiRequest.METHOD.POST) || (httpMethod == HiRequest.METHOD.PUT) || (httpMethod == HiRequest.METHOD.DELETE)
         ) {
             String.format("method %s must has one of GET,POST,PUT,DELETE ", method.name)
         }

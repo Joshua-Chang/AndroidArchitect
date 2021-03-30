@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 }
+apply plugin: 'dagger.hilt.android.plugin'
 apply from: '../dependency.gradle'
 def ext = rootProject.ext
 def dependency = rootProject.ext.dependencies
@@ -22,7 +23,7 @@ android {
         consumerProguardFiles "consumer-rules.pro"
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
+                arguments += [AROUTER_MODULE_NAME: project.getName()]
             }
         }
     }

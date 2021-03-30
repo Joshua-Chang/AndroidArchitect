@@ -12,7 +12,7 @@ import org.devio.`as`.proj.common.ext.showToast
 class AddressViewModel : ViewModel() {
     //列表上需要共享的数据
     var checkedPosition: Int = -1
-//    var checkedAddressItem: AddressItem? = null
+    var checkedAddressItem: AddressItem? = null
 
     fun queryAddressList(): LiveData<List<Address>?> {
         val liveData = MutableLiveData<List<Address>?>()
@@ -93,6 +93,7 @@ class AddressViewModel : ViewModel() {
             .enqueue(object : HiCallback<String> {
                 override fun onSuccess(response: HiResponse<String>) {
                     if (response.successful()) {
+                        showToast("地址删除成功")
                         liveData.postValue(response.successful())
                     } else {
                         showToast("地址删除失败")
@@ -107,7 +108,7 @@ class AddressViewModel : ViewModel() {
     }
 
     override fun onCleared() {
-//        checkedAddressItem = null
+        checkedAddressItem = null
         checkedPosition = -1
         super.onCleared()
     }

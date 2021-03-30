@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-kapt'
     id 'com.huawei.agconnect'
 }
+apply plugin: 'dagger.hilt.android.plugin'
 def ext = rootProject.ext
 def dependency = rootProject.ext.dependencies
 
@@ -23,7 +24,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
+                arguments += [AROUTER_MODULE_NAME: project.getName()]
             }
         }
         //开启拆分包
@@ -83,7 +84,7 @@ dependencies {
 //    implementation dependency.tinker_android_lib
 
     //hilt
-//    implementation dependency.hilt_android
-//    kapt dependency.hilt_android_compiler
-//    kapt dependency.hilt_compiler
+    implementation dependency.hilt_android
+    kapt dependency.hilt_android_compiler
+    kapt dependency.hilt_compiler
 }

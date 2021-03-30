@@ -10,14 +10,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.dialog_add_new_address.*
 import org.devio.`as`.proj.biz_order.R
+import org.devio.`as`.proj.common.city.CityMgr
 import org.devio.`as`.proj.common.ext.showToast
 import org.devio.hi.library.util.HiRes
+import org.devio.hi.ui.cityselector.CitySelectorDialogFragment
+import org.devio.hi.ui.cityselector.Province
 
 class AddEditingDialogFragment : AppCompatDialogFragment() {
 
     //对现有地址进行编辑
     private var address: Address? = null
-//    private var selectProvince: Province? = null
+    private var selectProvince: Province? = null
 
     companion object {
         const val KEY_ADDRESS_PARAMS = "key_address"
@@ -70,6 +73,23 @@ class AddEditingDialogFragment : AppCompatDialogFragment() {
         address_pick.getEditText().isFocusableInTouchMode = false
         address_pick.getEditText().setOnClickListener {
             //拉起城市选择器
+            val liveData = CityMgr.getCityData()
+            liveData.removeObservers(viewLifecycleOwner)/*防止多次触发*/
+            liveData.observe(viewLifecycleOwner, Observer {
+                //拉起城市选择器
+                if (it != null) {
+                    val citySelector = CitySelectorDialogFragment.newInstance(selectProvince, it)
+                    citySelector.setCitySelectListener(object :
+                        CitySelectorDialogFragment.onCitySelectListener {
+                        override fun onCitySelect(province: Province) {
+                            updateAddressPick(province)
+                        }
+                    })
+                    citySelector.show(childFragmentManager/*子fragment*/, "city_selector")
+                } else {
+                    showToast(HiRes.getString(R.string.city_data_set_empty))
+                }
+            })
         }
         //详细地址
         address_detail.getTitleView().gravity = Gravity.TOP
@@ -92,6 +112,11 @@ class AddEditingDialogFragment : AppCompatDialogFragment() {
         }
     }
 
+    private fun updateAddressPick(province: Province) {
+        this.selectProvince = province
+        address_pick.getEditText()
+            .setText("${province.districtName} ${province.selectCity?.districtName} ${province.selectDistrict?.districtName}")
+    }
     private fun savedAddress() {
         val phone = user_phone.getEditText().text.toString().trim()
         val receiver = user_name.getEditText().text.toString().trim()
@@ -105,22 +130,29 @@ class AddEditingDialogFragment : AppCompatDialogFragment() {
             showToast(HiRes.getString(R.string.address_info_too_simple))
             return
         }
+        val province = selectProvince?.districtName ?: address?.province
+        val city = selectProvince?.selectCity?.districtName ?: address?.city
+        val district = selectProvince?.selectDistrict?.districtName ?: address?.area
+        if (TextUtils.isEmpty(province) || TextUtils.isEmpty(city) || TextUtils.isEmpty(district)) {
+            showToast(HiRes.getString(R.string.address_info_too_simple))
+            return
+        }
         if (address == null) {
             //新增地址保存
-//            viewModel.saveAddress(province!!, city!!, district!!, detail, receiver, phone)
-//                .observe(viewLifecycleOwner, observer)
+            viewModel.saveAddress(province!!, city!!, district!!, detail, receiver, phone)
+                .observe(viewLifecycleOwner, observer)
         } else {
             //更新地址
-//            viewModel.updateAddress(
-//                address!!.id,
-//                province!!,
-//                city!!,
-//                district!!,
-//                detail,
-//                receiver,
-//                phone
-//            )
-//                .observe(viewLifecycleOwner, observer)
+            viewModel.updateAddress(
+                address!!.id,
+                province!!,
+                city!!,
+                district!!,
+                detail,
+                receiver,
+                phone
+            )
+                .observe(viewLifecycleOwner, observer)
         }
 
     }
