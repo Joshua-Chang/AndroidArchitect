@@ -31,7 +31,7 @@ public class SwaggerConfig {
                 .enableUrlTemplating(false)
                 .tags(new Tag("Account", "账号模块"))
 //                .tags(new Tag("City", "城市模块"))
-//                .tags(new Tag("HiConfig", "配置中心模块"))
+                .tags(new Tag("HiConfig", "配置中心模块"))
                 .tags(new Tag("Category", "商品类别"));
     }
 

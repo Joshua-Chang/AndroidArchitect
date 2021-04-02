@@ -288,6 +288,101 @@
               "relationNoShow": true
             }
           ]
+        },
+        {
+          "title": "hi_config",
+          "fields": [
+            {
+              "name": "id",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "配置ID",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "namespace",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "命名空间",
+              "notNull": true
+            },
+            {
+              "name": "version",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "版本号",
+              "notNull": true
+            },
+            {
+              "name": "create_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间",
+              "notNull": true
+            },
+            {
+              "name": "original_url",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "原始配置下载地址",
+              "notNull": true
+            },
+            {
+              "name": "json_url",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "json类型数据下载地址",
+              "notNull": true
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ]
         }
       ],
       "graphCanvas": {

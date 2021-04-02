@@ -1,5 +1,6 @@
 package com.example.as.api.entity;
 
+import com.example.as.api.hiconfig.HiConfigDelegate;
 import com.example.as.api.util.ResponseCode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -16,6 +17,8 @@ public class ResponseEntity {
     private ResponseEntity(ResponseCode responseCode) {
         this.message = responseCode.msg();
         this.code=responseCode.code();
+        /*在数据返回前，添加探针，真实项目中通过网关做*/
+        HiConfigDelegate.bindConfig(extra);
     }
 
     public static ResponseEntity of(ResponseCode responseCode) {
